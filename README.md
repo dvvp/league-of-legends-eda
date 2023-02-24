@@ -65,10 +65,10 @@ lol_2022.shape  # (rows, columns)
 
 The original dataset contains 149232 rows and 123 columns. We will be using 3 columns. Using OE's [definitions page](https://oracleselixir.com/tools/downloads) along with our background on the game, we defined these columns below:
 
-| Type   | Description                    |
-|:-------|:-------------------------------|
-| object | Unique identifier to each game |
-| object | Whether the data is complete   |
-| object | Webpage address to game        |
+| Column           | Type   | Description                    |
+|:-----------------|:-------|:-------------------------------|
+| gameid           | object | Unique identifier to each game |
+| datacompleteness | object | Whether the data is complete   |
+| url              | object | Webpage address to game        |
 
 ### Cleaning and EDA
