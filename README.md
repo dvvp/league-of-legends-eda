@@ -71,7 +71,6 @@ The original dataset contains 149232 rows and 123 columns. We will be using 3 co
 | datacompleteness | object | Whether the data is complete   |
 | url              | object | Webpage address to game        |
 
-
 ---
 
 ### Cleaning and EDA
