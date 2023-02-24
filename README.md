@@ -5,7 +5,7 @@ Created by Devin Pham and Minh Vo
 
 ### Code
 
-#### Imports
+Importing necessary Python libraries...
 ```python
 import pandas as pd
 import numpy as np
@@ -17,7 +17,7 @@ import plotly.express as px
 pd.options.plotting.backend = 'plotly'
 ```
 
-#### Reading dataset
+Reading in our dataset...
 ```python
 path = os.path.join('data', '2022_LoL_esports_match_data_from_OraclesElixir.csv')
 lol_2022 = pd.read_csv(path, low_memory=False) # low_memory=False allows pandas to process null values
