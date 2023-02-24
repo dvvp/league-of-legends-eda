@@ -1,6 +1,2 @@
-# league-of-legends-eda
-This is a project for DSC 80 at UCSD
-
-This is a website
-
-There are going to words and graphs and stuff on this website.
+# More Dragons = More Kills? (League of Legends EDA)
+This is a project for DSC 80 at UCSD by Devin Pham and Minh Vo
