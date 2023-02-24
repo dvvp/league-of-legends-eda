@@ -96,7 +96,7 @@ lol_2022.head()
 
 This dataset combines game, player, and team data together. We found that each `gameid` corresponds to up to 12 rows (5 rows for players in one team, 5 rows for players in another team, and 2 rows containing summary data for the two teams). We can separate each dataset into three DataFrames to distinguish each type of data. The first five columns of each DataFrame are displayed below:
 
-(Note that in each of the following DataFrames, we also dropped all of the columns that have all missing values since these values are missing by design (MD))
+***Note:*** In each of the following DataFrames, we also dropped all of the columns that have all missing values since these values are missing by design (MD))
 
 ```python
 games = lol_2022[lol_2022['gameid'].str.contains('game')]
