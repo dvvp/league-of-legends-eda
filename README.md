@@ -100,6 +100,30 @@ This dataset combines game, player, and team data together. We found that each `
 
 ```python
 games = lol_2022[lol_2022['gameid'].str.contains('game')]
-games.drop(columns=games.columns[games.isna().all()])
+games = (
+    games
+    .drop(columns=games.columns[games.isna().all()])
+    .set_index('gameid')
+)
 games.head()
+```
+
+```python
+players = lol_2022[~lol_2022['gameid'].str.contains('game')]
+players = (
+    players
+    .drop(columns=players.columns[players.isna().all()])
+    .set_index('gameid')
+)
+players.head()
+```
+
+```
+teams = (
+    players
+    .reset_index()
+    .groupby('gameid').apply(lambda df: df.iloc[-2:])
+    .drop(columns=list(teams.columns[teams.isna().all()]) + ['gameid'])
+)
+teams.head()
 ```
