@@ -1,4 +1,6 @@
 # league-of-legends-eda
 This is a project for DSC 80 at UCSD
 
-a;sdfj;aslkd;laskdfjsafj
+This is a website
+
+There are going to words and graphs and stuff on this website.
