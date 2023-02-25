@@ -87,7 +87,7 @@ for col in lol_2022.columns:
     if ((lol_2022[col] == 0) | (lol_2022[col] == 1)).sum() == lol_2022.shape[0]:
         lol_2022[col] = lol_2022[col].astype(bool)
 
-lol_2022.head()
+lol_2022.head()  # Shows only the first 5 rows
 ```
 
 | gameid                | datacompleteness   |   url | league   |   year | split   | playoffs   | date                |   game |   patch |   participantid | side   | position   | playername   | playerid                                  | teamname                 | teamid                                  | champion   | ban1   | ban2    | ban3   | ban4   | ban5   |   gamelength | result   |   kills |   deaths |   assists |   teamkills |   teamdeaths |   doublekills |   triplekills |   quadrakills |   pentakills |   firstblood |   firstbloodkill |   firstbloodassist |   firstbloodvictim |   team kpm |   ckpm |   firstdragon |   dragons |   opp_dragons |   elementaldrakes |   opp_elementaldrakes |   infernals |   mountains |   clouds |   oceans |   chemtechs |   hextechs |   dragons (type unknown) |   elders |   opp_elders |   firstherald |   heralds |   opp_heralds |   firstbaron |   barons |   opp_barons |   firsttower |   towers |   opp_towers |   firstmidtower |   firsttothreetowers |   turretplates |   opp_turretplates |   inhibitors |   opp_inhibitors |   damagetochampions |     dpm |   damageshare |   damagetakenperminute |   damagemitigatedperminute |   wardsplaced |    wpm |   wardskilled |   wcpm |   controlwardsbought |   visionscore |   vspm |   totalgold |   earnedgold |   earned gpm |   earnedgoldshare |   goldspent |   gspd |   total cs |   minionkills |   monsterkills |   monsterkillsownjungle |   monsterkillsenemyjungle |   cspm |   goldat10 |   xpat10 |   csat10 |   opp_goldat10 |   opp_xpat10 |   opp_csat10 |   golddiffat10 |   xpdiffat10 |   csdiffat10 |   killsat10 |   assistsat10 |   deathsat10 |   opp_killsat10 |   opp_assistsat10 |   opp_deathsat10 |   goldat15 |   xpat15 |   csat15 |   opp_goldat15 |   opp_xpat15 |   opp_csat15 |   golddiffat15 |   xpdiffat15 |   csdiffat15 |   killsat15 |   assistsat15 |   deathsat15 |   opp_killsat15 |   opp_assistsat15 |   opp_deathsat15 |
@@ -109,7 +109,7 @@ games = (
     .drop(columns=games.columns[games.isna().all()])
     .set_index('gameid')
 )
-games.head()
+games.head()  # Shows only the first 5 rows
 ```
 
 | gameid           | datacompleteness   | url                                         | league   |   year | split   | playoffs   | date                |   game |   patch |   participantid | side   | position   | playername   | playerid                                  | teamname   | teamid                                  | champion   | ban1     | ban2    | ban3    | ban4   | ban5    |   gamelength | result   |   kills |   deaths |   assists |   teamkills |   teamdeaths |   firstblood |   firstbloodkill |   team kpm |   ckpm |   dragons |   opp_dragons |   dragons (type unknown) |   barons |   opp_barons |   towers |   opp_towers |   inhibitors |   opp_inhibitors |   damagetochampions |     dpm |   damageshare |   damagetakenperminute |   wardsplaced |    wpm |   wardskilled |   wcpm |   controlwardsbought |   visionscore |   vspm |   totalgold |   earnedgold |   earned gpm |   earnedgoldshare |   goldspent |   gspd |   total cs |   minionkills |   monsterkills |   monsterkillsownjungle |   monsterkillsenemyjungle |   cspm |
@@ -127,7 +127,7 @@ players = (
     .drop(columns=players.columns[players.isna().all()])
     .set_index('gameid')
 )
-players.head()
+players.head()  # Shows only the first 5 rows
 ```
 
 | gameid                | datacompleteness   |   url | league   |   year | split   | playoffs   | date                |   game |   patch |   participantid | side   | position   | playername   | playerid                                  | teamname                 | teamid                                  | champion   | ban1   | ban2    | ban3   | ban4   | ban5   |   gamelength | result   |   kills |   deaths |   assists |   teamkills |   teamdeaths |   doublekills |   triplekills |   quadrakills |   pentakills |   firstblood |   firstbloodkill |   firstbloodassist |   firstbloodvictim |   team kpm |   ckpm |   firstdragon |   dragons |   opp_dragons |   elementaldrakes |   opp_elementaldrakes |   infernals |   mountains |   clouds |   oceans |   chemtechs |   hextechs |   dragons (type unknown) |   elders |   opp_elders |   firstherald |   heralds |   opp_heralds |   firstbaron |   barons |   opp_barons |   firsttower |   towers |   opp_towers |   firstmidtower |   firsttothreetowers |   turretplates |   opp_turretplates |   inhibitors |   opp_inhibitors |   damagetochampions |     dpm |   damageshare |   damagetakenperminute |   damagemitigatedperminute |   wardsplaced |    wpm |   wardskilled |   wcpm |   controlwardsbought |   visionscore |   vspm |   totalgold |   earnedgold |   earned gpm |   earnedgoldshare |   goldspent |   gspd |   total cs |   minionkills |   monsterkills |   monsterkillsownjungle |   monsterkillsenemyjungle |   cspm |   goldat10 |   xpat10 |   csat10 |   opp_goldat10 |   opp_xpat10 |   opp_csat10 |   golddiffat10 |   xpdiffat10 |   csdiffat10 |   killsat10 |   assistsat10 |   deathsat10 |   opp_killsat10 |   opp_assistsat10 |   opp_deathsat10 |   goldat15 |   xpat15 |   csat15 |   opp_goldat15 |   opp_xpat15 |   opp_csat15 |   golddiffat15 |   xpdiffat15 |   csdiffat15 |   killsat15 |   assistsat15 |   deathsat15 |   opp_killsat15 |   opp_assistsat15 |   opp_deathsat15 |
@@ -145,7 +145,7 @@ teams = (
     .groupby('gameid').apply(lambda df: df.iloc[-2:])
 )
 teams = teams.drop(columns=list(teams.columns[teams.isna().all()]) + ['gameid'])
-teams.head()
+teams.head()  # Shows only the first 5 rows
 ```
 
 |                               | datacompleteness   |   url | league   |   year | split   | playoffs   | date                |   game |   patch |   participantid | side   | position   | teamname                      | teamid                                  | ban1    | ban2         | ban3         | ban4     | ban5    |   gamelength | result   |   kills |   deaths |   assists |   teamkills |   teamdeaths |   doublekills |   triplekills |   quadrakills |   pentakills |   firstblood |   team kpm |   ckpm |   firstdragon |   dragons |   opp_dragons |   elementaldrakes |   opp_elementaldrakes |   infernals |   mountains |   clouds |   oceans |   chemtechs |   hextechs |   dragons (type unknown) |   elders |   opp_elders |   firstherald |   heralds |   opp_heralds |   firstbaron |   barons |   opp_barons |   firsttower |   towers |   opp_towers |   firstmidtower |   firsttothreetowers |   turretplates |   opp_turretplates |   inhibitors |   opp_inhibitors |   damagetochampions |     dpm |   damagetakenperminute |   damagemitigatedperminute |   wardsplaced |    wpm |   wardskilled |   wcpm |   controlwardsbought |   visionscore |   vspm |   totalgold |   earnedgold |   earned gpm |   goldspent |       gspd |   minionkills |   monsterkills |   monsterkillsownjungle |   monsterkillsenemyjungle |    cspm |   goldat10 |   xpat10 |   csat10 |   opp_goldat10 |   opp_xpat10 |   opp_csat10 |   golddiffat10 |   xpdiffat10 |   csdiffat10 |   killsat10 |   assistsat10 |   deathsat10 |   opp_killsat10 |   opp_assistsat10 |   opp_deathsat10 |   goldat15 |   xpat15 |   csat15 |   opp_goldat15 |   opp_xpat15 |   opp_csat15 |   golddiffat15 |   xpdiffat15 |   csdiffat15 |   killsat15 |   assistsat15 |   deathsat15 |   opp_killsat15 |   opp_assistsat15 |   opp_deathsat15 |
@@ -199,11 +199,9 @@ Looking at the two distributions, we can infer that the distribution of 20+ team
 
 We can look at how the average number of dragons compare to the number of team kills by aggregating our data.
 
-***Note:*** We are only showing the first 10 rows of the pivot table. We can get a better picture of the data by viewing the histogram below.
-
 ```python
 avg_dragons_by_id = players.pivot_table(index = 'gameid', values = ['dragons', 'teamkills'], aggfunc = 'mean').sort_values(by='dragons', ascending=False)
-avg_dragons_by_id.head(10)
+avg_dragons_by_id.head()  # Shows only the first 5 rows
 ```
 
 | gameid                |   dragons |   teamkills |
@@ -241,12 +239,10 @@ In our dataset, we have divided the original dataframe by just keeping the rows 
 
 Before each game, the team votes 5 times to ban 5 champions so the opposing team cannot pick that chosen champions. We believe that the data in these columns are not missing at random (NMAR) because there are no other information from the dataset that could determine why these inputs are missing and there is no benefit to the team to not ban champions so the reason that these values are missing is currently unknown. To be able to conclude that these columns were missing at random (MAR), we would like to collect some more information such as the total amount of champions banned, and if there was a network interuption that occurred during the banning phase.
 
-***Note:*** We are only showing the first 10 rows of the pivot table to provide a visual of the nan values that can be found in each of the `ban` columns
-
 ```python
 ban_cols = teams.columns[teams.columns.str.contains('ban')]
 missing_bans = teams[ban_cols][teams[ban_cols].isna().sum(axis=1) >= 1]
-missing_bans.head(10)
+missing_bans.head()  # Shows only the first 5 rows
 ```
 
 |                                 | ban1     | ban2         | ban3         | ban4    | ban5         |
@@ -264,7 +260,59 @@ missing_bans.head(10)
 
 #### Missingness Dependency
 
-(TODO)
+To determine missingness dependency, we created three separate functions. `diff_of_means` will calculate our test statistic, `simulate_null` will calculate our observered statistic, and `pval` calculates our p-value using 1000 simulations. 
+
+```python
+def diff_of_means(data, col):
+    a = (data[data['total_bans'] == 5])[col].mean()
+    b = (data[data['total_bans'] != 5])[col].mean()
+    return abs(a-b)
+```
+
+```python
+def simulate_null(data, col):
+    new = data[data['total_bans']==5].sample(n = data[data['total_bans']!=5].shape[0])
+    alldata = pd.concat([data[data['total_bans']!=5], new])
+    new_col = np.random.permutation(alldata['total_bans'])
+    alldata['total_bans'] = new_col
+    return diff_of_means(alldata, col)
+```
+
+```python
+def pval(data, col):
+    result = []
+    for i in range(1000):
+        result.append(simulate_null(data, col))
+    return (diff_of_means(data,col) <= result).mean()
+```
+
+We will try testing missingness dependency of two columns: `deaths` and `kills`. The following DataFrame will filter our 
+
+```python
+bans = players[['ban1', 'ban2', 'ban3', 'ban4', 'ban5']]
+total_bans = (~bans.isna()).sum(axis = 1)
+players_mod = players_mod[['deaths', 'kills']]
+players_mod = players_mod.assign(total_bans = total_bans)
+players_mod.head()  # Shows only the first 5 rows
+```
+
+Computing our p-value on the `kills` column, we get a p-value of 0.662. 
+
+```python
+pval(players_mod, 'kills')
+```
+0.662
+
+Because we got a p-value that is > 0.05, we retain the null hypothesis; the missingness of `kills` column seems to be ***independent*** of the total bans.
+
+Computing our p-value on the `deaths` column, we get a p-value of 0.048. 
+
+```python
+pval(players_mod, 'deaths')
+```
+0.048
+
+Because we got a p-value that is <= 0.05, we reject the null hypothesis; the missingness of the `deaths` column seems to be ***dependent*** on the total bans.
 
 ---
 
@@ -277,7 +325,7 @@ This question will help us answer the question that we want to investigate furth
 ```python
 # Three or more dragons
 three_or_more = teams[(teams['dragons'] >= 3)]
-three_or_more.head()
+three_or_more.head() # Shows only the first 5 rows
 ```
 
 |                               | datacompleteness   |   url | league   |   year | split   | playoffs   | date                |   game |   patch |   participantid | side   | position   | teamname                        | teamid                                  | ban1    | ban2         | ban3         | ban4       | ban5    |   gamelength | result   |   kills |   deaths |   assists |   teamkills |   teamdeaths |   doublekills |   triplekills |   quadrakills |   pentakills |   firstblood |   team kpm |   ckpm |   firstdragon |   dragons |   opp_dragons |   elementaldrakes |   opp_elementaldrakes |   infernals |   mountains |   clouds |   oceans |   chemtechs |   hextechs |   dragons (type unknown) |   elders |   opp_elders |   firstherald |   heralds |   opp_heralds |   firstbaron |   barons |   opp_barons |   firsttower |   towers |   opp_towers |   firstmidtower |   firsttothreetowers |   turretplates |   opp_turretplates |   inhibitors |   opp_inhibitors |   damagetochampions |     dpm |   damagetakenperminute |   damagemitigatedperminute |   wardsplaced |    wpm |   wardskilled |   wcpm |   controlwardsbought |   visionscore |   vspm |   totalgold |   earnedgold |   earned gpm |   goldspent |       gspd |   minionkills |   monsterkills |   monsterkillsownjungle |   monsterkillsenemyjungle |    cspm |   goldat10 |   xpat10 |   csat10 |   opp_goldat10 |   opp_xpat10 |   opp_csat10 |   golddiffat10 |   xpdiffat10 |   csdiffat10 |   killsat10 |   assistsat10 |   deathsat10 |   opp_killsat10 |   opp_assistsat10 |   opp_deathsat10 |   goldat15 |   xpat15 |   csat15 |   opp_goldat15 |   opp_xpat15 |   opp_csat15 |   golddiffat15 |   xpdiffat15 |   csdiffat15 |   killsat15 |   assistsat15 |   deathsat15 |   opp_killsat15 |   opp_assistsat15 |   opp_deathsat15 |
