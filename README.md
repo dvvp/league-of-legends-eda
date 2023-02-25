@@ -27,7 +27,7 @@ lol_2022 = pd.read_csv(path, low_memory=False)  # low_memory=False allows pandas
 
 ### Introduction
 
-![Dragon](asserts/dragon.jpg)
+![Dragon](assets/dragon.jpg)
 
 Questions to ask:
 
