@@ -3,30 +3,6 @@ Created by Devin Pham and Minh Vo
 
 ---
 
-### Code
-
-Importing the necessary Python libraries...
-
-```python
-import pandas as pd
-import numpy as np
-import os
-```
-
-```python
-import plotly.express as px
-pd.options.plotting.backend = 'plotly'
-```
-
-Reading in our dataset...
-
-```python
-path = os.path.join('data', '2022_LoL_esports_match_data_from_OraclesElixir.csv')
-lol_2022 = pd.read_csv(path, low_memory=False)  # low_memory=False allows pandas to process null values
-```
-
----
-
 ### Introduction
 
 <img src="assets/dragon.jpg" alt="Dragon" width="800">
@@ -50,10 +26,6 @@ Killing a dragon in [League of Legends](https://en.wikipedia.org/wiki/League_of_
 
 The dataset that we will primarily be using is the 2022 League of Legends esports match data from the website [Oracle's Elixir](https://oracleselixir.com/tools/downloads) (OE) as it is the most recent complete dataset that they have. The first 5 rows of the DataFrame and the DataFrame's dimensions are displayed below:
 
-```python
-lol_2022.head()
-```
-
 | gameid                | datacompleteness   |   url | league   |   year | split   |   playoffs | date                |   game |   patch |   participantid | side   | position   | playername   | playerid                                  | teamname                 | teamid                                  | champion   | ban1   | ban2    | ban3   | ban4   | ban5   |   gamelength |   result |   kills |   deaths |   assists |   teamkills |   teamdeaths |   doublekills |   triplekills |   quadrakills |   pentakills |   firstblood |   firstbloodkill |   firstbloodassist |   firstbloodvictim |   team kpm |   ckpm |   firstdragon |   dragons |   opp_dragons |   elementaldrakes |   opp_elementaldrakes |   infernals |   mountains |   clouds |   oceans |   chemtechs |   hextechs |   dragons (type unknown) |   elders |   opp_elders |   firstherald |   heralds |   opp_heralds |   firstbaron |   barons |   opp_barons |   firsttower |   towers |   opp_towers |   firstmidtower |   firsttothreetowers |   turretplates |   opp_turretplates |   inhibitors |   opp_inhibitors |   damagetochampions |     dpm |   damageshare |   damagetakenperminute |   damagemitigatedperminute |   wardsplaced |    wpm |   wardskilled |   wcpm |   controlwardsbought |   visionscore |   vspm |   totalgold |   earnedgold |   earned gpm |   earnedgoldshare |   goldspent |   gspd |   total cs |   minionkills |   monsterkills |   monsterkillsownjungle |   monsterkillsenemyjungle |   cspm |   goldat10 |   xpat10 |   csat10 |   opp_goldat10 |   opp_xpat10 |   opp_csat10 |   golddiffat10 |   xpdiffat10 |   csdiffat10 |   killsat10 |   assistsat10 |   deathsat10 |   opp_killsat10 |   opp_assistsat10 |   opp_deathsat10 |   goldat15 |   xpat15 |   csat15 |   opp_goldat15 |   opp_xpat15 |   opp_csat15 |   golddiffat15 |   xpdiffat15 |   csdiffat15 |   killsat15 |   assistsat15 |   deathsat15 |   opp_killsat15 |   opp_assistsat15 |   opp_deathsat15 |
 |:----------------------|:-------------------|------:|:---------|-------:|:--------|-----------:|:--------------------|-------:|--------:|----------------:|:-------|:-----------|:-------------|:------------------------------------------|:-------------------------|:----------------------------------------|:-----------|:-------|:--------|:-------|:-------|:-------|-------------:|---------:|--------:|---------:|----------:|------------:|-------------:|--------------:|--------------:|--------------:|-------------:|-------------:|-----------------:|-------------------:|-------------------:|-----------:|-------:|--------------:|----------:|--------------:|------------------:|----------------------:|------------:|------------:|---------:|---------:|------------:|-----------:|-------------------------:|---------:|-------------:|--------------:|----------:|--------------:|-------------:|---------:|-------------:|-------------:|---------:|-------------:|----------------:|---------------------:|---------------:|-------------------:|-------------:|-----------------:|--------------------:|--------:|--------------:|-----------------------:|---------------------------:|--------------:|-------:|--------------:|-------:|---------------------:|--------------:|-------:|------------:|-------------:|-------------:|------------------:|------------:|-------:|-----------:|--------------:|---------------:|------------------------:|--------------------------:|-------:|-----------:|---------:|---------:|---------------:|-------------:|-------------:|---------------:|-------------:|-------------:|------------:|--------------:|-------------:|----------------:|------------------:|-----------------:|-----------:|---------:|---------:|---------------:|-------------:|-------------:|---------------:|-------------:|-------------:|------------:|--------------:|-------------:|----------------:|------------------:|-----------------:|
 | ESPORTSTMNT01_2690210 | complete           |   nan | LCK CL   |   2022 | Spring  |          0 | 2022-01-10 07:44:08 |      1 |   12.01 |               1 | Blue   | top        | Soboro       | oe:player:38e0af7278d6769d0c81d7c4b47ac1e | Fredit BRION Challengers | oe:team:68911b3329146587617ab2973106e23 | Renekton   | Karma  | Caitlyn | Syndra | Thresh | Lulu   |         1713 |        0 |       2 |        3 |         2 |           9 |           19 |             0 |             0 |             0 |            0 |            0 |                0 |                  0 |                  0 |     0.3152 | 0.9807 |           nan |       nan |           nan |               nan |                   nan |         nan |         nan |      nan |      nan |         nan |        nan |                      nan |      nan |          nan |           nan |       nan |           nan |          nan |        0 |            0 |          nan |      nan |          nan |             nan |                  nan |            nan |                nan |            0 |                0 |               15768 | 552.294 |     0.278784  |               1072.4   |                    777.793 |             8 | 0.2802 |             6 | 0.2102 |                    5 |            26 | 0.9107 |       10934 |         7164 |      250.928 |          0.253859 |       10275 |    nan |        231 |           220 |             11 |                     nan |                       nan | 8.0911 |       3228 |     4909 |       89 |           3176 |         4953 |           81 |             52 |          -44 |            8 |           0 |             0 |            0 |               0 |                 0 |                0 |       5025 |     7560 |      135 |           4634 |         7215 |          121 |            391 |          345 |           14 |           0 |             1 |            0 |               0 |                 1 |                0 |
@@ -61,11 +33,6 @@ lol_2022.head()
 | ESPORTSTMNT01_2690210 | complete           |   nan | LCK CL   |   2022 | Spring  |          0 | 2022-01-10 07:44:08 |      1 |   12.01 |               3 | Blue   | mid        | Feisty       | oe:player:d1ae0e2f9f3ac1e0e0cdcb86504ca77 | Fredit BRION Challengers | oe:team:68911b3329146587617ab2973106e23 | LeBlanc    | Karma  | Caitlyn | Syndra | Thresh | Lulu   |         1713 |        0 |       2 |        2 |         3 |           9 |           19 |             0 |             0 |             0 |            0 |            0 |                0 |                  0 |                  0 |     0.3152 | 0.9807 |           nan |       nan |           nan |               nan |                   nan |         nan |         nan |      nan |      nan |         nan |        nan |                      nan |      nan |          nan |           nan |       nan |           nan |          nan |        0 |            0 |          nan |      nan |          nan |             nan |                  nan |            nan |                nan |            0 |                0 |               14258 | 499.405 |     0.252086  |                581.646 |                    227.776 |            19 | 0.6655 |             7 | 0.2452 |                    7 |            29 | 1.0158 |        9715 |         5945 |      208.231 |          0.210665 |        8725 |    nan |        193 |           177 |             16 |                     nan |                       nan | 6.7601 |       3283 |     4556 |       81 |           3121 |         4485 |           81 |            162 |           71 |            0 |           0 |             1 |            0 |               0 |                 0 |                1 |       5118 |     6942 |      120 |           5593 |         6789 |          119 |           -475 |          153 |            1 |           0 |             3 |            0 |               3 |                 3 |                2 |
 | ESPORTSTMNT01_2690210 | complete           |   nan | LCK CL   |   2022 | Spring  |          0 | 2022-01-10 07:44:08 |      1 |   12.01 |               4 | Blue   | bot        | Gamin        | oe:player:998b3e49b01ecc41eacc392477a98cf | Fredit BRION Challengers | oe:team:68911b3329146587617ab2973106e23 | Samira     | Karma  | Caitlyn | Syndra | Thresh | Lulu   |         1713 |        0 |       2 |        4 |         2 |           9 |           19 |             0 |             0 |             0 |            0 |            1 |                0 |                  1 |                  0 |     0.3152 | 0.9807 |           nan |       nan |           nan |               nan |                   nan |         nan |         nan |      nan |      nan |         nan |        nan |                      nan |      nan |          nan |           nan |       nan |           nan |          nan |        0 |            0 |          nan |      nan |          nan |             nan |                  nan |            nan |                nan |            0 |                0 |               11106 | 389.002 |     0.196358  |                463.853 |                    218.879 |            12 | 0.4203 |             6 | 0.2102 |                    4 |            25 | 0.8757 |       10605 |         6835 |      239.405 |          0.242201 |       10425 |    nan |        226 |           208 |             18 |                     nan |                       nan | 7.9159 |       3600 |     3103 |       78 |           3304 |         2838 |           90 |            296 |          265 |          -12 |           1 |             1 |            0 |               0 |                 0 |                0 |       5461 |     4591 |      115 |           6254 |         5934 |          149 |           -793 |        -1343 |          -34 |           2 |             1 |            2 |               3 |                 3 |                0 |
 | ESPORTSTMNT01_2690210 | complete           |   nan | LCK CL   |   2022 | Spring  |          0 | 2022-01-10 07:44:08 |      1 |   12.01 |               5 | Blue   | sup        | Loopy        | oe:player:e9741b3a238723ea6380ef2113fae63 | Fredit BRION Challengers | oe:team:68911b3329146587617ab2973106e23 | Leona      | Karma  | Caitlyn | Syndra | Thresh | Lulu   |         1713 |        0 |       1 |        5 |         6 |           9 |           19 |             0 |             0 |             0 |            0 |            1 |                1 |                  0 |                  0 |     0.3152 | 0.9807 |           nan |       nan |           nan |               nan |                   nan |         nan |         nan |      nan |      nan |         nan |        nan |                      nan |      nan |          nan |           nan |       nan |           nan |          nan |        0 |            0 |          nan |      nan |          nan |             nan |                  nan |            nan |                nan |            0 |                0 |                3663 | 128.301 |     0.0647631 |                475.026 |                    490.123 |            29 | 1.0158 |            14 | 0.4904 |                   11 |            69 | 2.4168 |        6678 |         2908 |      101.856 |          0.103054 |        6395 |    nan |         42 |            42 |              0 |                     nan |                       nan | 1.4711 |       2678 |     2161 |       16 |           2150 |         2748 |           15 |            528 |         -587 |            1 |           1 |             1 |            0 |               0 |                 0 |                1 |       3836 |     3588 |       28 |           3393 |         4085 |           21 |            443 |         -497 |            7 |           1 |             2 |            2 |               0 |                 6 |                2 |
-
-```python
-lol_2022.shape  # (rows, columns)
-```
-(149232, 123)
 
 The original dataset contains 149232 rows and 123 columns. We will be using 3 columns. Using OE's [definitions page](https://oracleselixir.com/tools/downloads) along with our background on the game, we defined these columns below:
 
@@ -82,13 +49,7 @@ The original dataset contains 149232 rows and 123 columns. We will be using 3 co
 #### Data Cleaning
 Since many of these columns should be of type `bool`, but they are not, we will convert these columns to their appropriate type.
 
-```python
-for col in lol_2022.columns:
-    if ((lol_2022[col] == 0) | (lol_2022[col] == 1)).sum() == lol_2022.shape[0]:
-        lol_2022[col] = lol_2022[col].astype(bool)
-
-lol_2022.head()  # Shows only the first 5 rows
-```
+***Note:*** These are the first 5 rows of the DataFrame
 
 | gameid                | datacompleteness   |   url | league   |   year | split   | playoffs   | date                |   game |   patch |   participantid | side   | position   | playername   | playerid                                  | teamname                 | teamid                                  | champion   | ban1   | ban2    | ban3   | ban4   | ban5   |   gamelength | result   |   kills |   deaths |   assists |   teamkills |   teamdeaths |   doublekills |   triplekills |   quadrakills |   pentakills |   firstblood |   firstbloodkill |   firstbloodassist |   firstbloodvictim |   team kpm |   ckpm |   firstdragon |   dragons |   opp_dragons |   elementaldrakes |   opp_elementaldrakes |   infernals |   mountains |   clouds |   oceans |   chemtechs |   hextechs |   dragons (type unknown) |   elders |   opp_elders |   firstherald |   heralds |   opp_heralds |   firstbaron |   barons |   opp_barons |   firsttower |   towers |   opp_towers |   firstmidtower |   firsttothreetowers |   turretplates |   opp_turretplates |   inhibitors |   opp_inhibitors |   damagetochampions |     dpm |   damageshare |   damagetakenperminute |   damagemitigatedperminute |   wardsplaced |    wpm |   wardskilled |   wcpm |   controlwardsbought |   visionscore |   vspm |   totalgold |   earnedgold |   earned gpm |   earnedgoldshare |   goldspent |   gspd |   total cs |   minionkills |   monsterkills |   monsterkillsownjungle |   monsterkillsenemyjungle |   cspm |   goldat10 |   xpat10 |   csat10 |   opp_goldat10 |   opp_xpat10 |   opp_csat10 |   golddiffat10 |   xpdiffat10 |   csdiffat10 |   killsat10 |   assistsat10 |   deathsat10 |   opp_killsat10 |   opp_assistsat10 |   opp_deathsat10 |   goldat15 |   xpat15 |   csat15 |   opp_goldat15 |   opp_xpat15 |   opp_csat15 |   golddiffat15 |   xpdiffat15 |   csdiffat15 |   killsat15 |   assistsat15 |   deathsat15 |   opp_killsat15 |   opp_assistsat15 |   opp_deathsat15 |
 |:----------------------|:-------------------|------:|:---------|-------:|:--------|:-----------|:--------------------|-------:|--------:|----------------:|:-------|:-----------|:-------------|:------------------------------------------|:-------------------------|:----------------------------------------|:-----------|:-------|:--------|:-------|:-------|:-------|-------------:|:---------|--------:|---------:|----------:|------------:|-------------:|--------------:|--------------:|--------------:|-------------:|-------------:|-----------------:|-------------------:|-------------------:|-----------:|-------:|--------------:|----------:|--------------:|------------------:|----------------------:|------------:|------------:|---------:|---------:|------------:|-----------:|-------------------------:|---------:|-------------:|--------------:|----------:|--------------:|-------------:|---------:|-------------:|-------------:|---------:|-------------:|----------------:|---------------------:|---------------:|-------------------:|-------------:|-----------------:|--------------------:|--------:|--------------:|-----------------------:|---------------------------:|--------------:|-------:|--------------:|-------:|---------------------:|--------------:|-------:|------------:|-------------:|-------------:|------------------:|------------:|-------:|-----------:|--------------:|---------------:|------------------------:|--------------------------:|-------:|-----------:|---------:|---------:|---------------:|-------------:|-------------:|---------------:|-------------:|-------------:|------------:|--------------:|-------------:|----------------:|------------------:|-----------------:|-----------:|---------:|---------:|---------------:|-------------:|-------------:|---------------:|-------------:|-------------:|------------:|--------------:|-------------:|----------------:|------------------:|-----------------:|
@@ -98,19 +59,11 @@ lol_2022.head()  # Shows only the first 5 rows
 | ESPORTSTMNT01_2690210 | complete           |   nan | LCK CL   |   2022 | Spring  | False      | 2022-01-10 07:44:08 |      1 |   12.01 |               4 | Blue   | bot        | Gamin        | oe:player:998b3e49b01ecc41eacc392477a98cf | Fredit BRION Challengers | oe:team:68911b3329146587617ab2973106e23 | Samira     | Karma  | Caitlyn | Syndra | Thresh | Lulu   |         1713 | False    |       2 |        4 |         2 |           9 |           19 |             0 |             0 |             0 |            0 |            1 |                0 |                  1 |                  0 |     0.3152 | 0.9807 |           nan |       nan |           nan |               nan |                   nan |         nan |         nan |      nan |      nan |         nan |        nan |                      nan |      nan |          nan |           nan |       nan |           nan |          nan |        0 |            0 |          nan |      nan |          nan |             nan |                  nan |            nan |                nan |            0 |                0 |               11106 | 389.002 |     0.196358  |                463.853 |                    218.879 |            12 | 0.4203 |             6 | 0.2102 |                    4 |            25 | 0.8757 |       10605 |         6835 |      239.405 |          0.242201 |       10425 |    nan |        226 |           208 |             18 |                     nan |                       nan | 7.9159 |       3600 |     3103 |       78 |           3304 |         2838 |           90 |            296 |          265 |          -12 |           1 |             1 |            0 |               0 |                 0 |                0 |       5461 |     4591 |      115 |           6254 |         5934 |          149 |           -793 |        -1343 |          -34 |           2 |             1 |            2 |               3 |                 3 |                0 |
 | ESPORTSTMNT01_2690210 | complete           |   nan | LCK CL   |   2022 | Spring  | False      | 2022-01-10 07:44:08 |      1 |   12.01 |               5 | Blue   | sup        | Loopy        | oe:player:e9741b3a238723ea6380ef2113fae63 | Fredit BRION Challengers | oe:team:68911b3329146587617ab2973106e23 | Leona      | Karma  | Caitlyn | Syndra | Thresh | Lulu   |         1713 | False    |       1 |        5 |         6 |           9 |           19 |             0 |             0 |             0 |            0 |            1 |                1 |                  0 |                  0 |     0.3152 | 0.9807 |           nan |       nan |           nan |               nan |                   nan |         nan |         nan |      nan |      nan |         nan |        nan |                      nan |      nan |          nan |           nan |       nan |           nan |          nan |        0 |            0 |          nan |      nan |          nan |             nan |                  nan |            nan |                nan |            0 |                0 |                3663 | 128.301 |     0.0647631 |                475.026 |                    490.123 |            29 | 1.0158 |            14 | 0.4904 |                   11 |            69 | 2.4168 |        6678 |         2908 |      101.856 |          0.103054 |        6395 |    nan |         42 |            42 |              0 |                     nan |                       nan | 1.4711 |       2678 |     2161 |       16 |           2150 |         2748 |           15 |            528 |         -587 |            1 |           1 |             1 |            0 |               0 |                 0 |                1 |       3836 |     3588 |       28 |           3393 |         4085 |           21 |            443 |         -497 |            7 |           1 |             2 |            2 |               0 |                 6 |                2 |
 
-We were told that during the data generating process (DGP), game, player, and team data were combined together in that each `gameid` corresponds to up to 12 rows (5 rows for players in one team, 5 rows for players in the opposing team, and 2 rows containing summary data for the two teams). We can separate each dataset into three DataFrames to distinguish each type of data. The first five columns of each DataFrame are displayed below:
+We were told that during the data generating process (DGP), game, player, and team data were combined together in that each `gameid` corresponds to up to 12 rows (5 rows for players in one team, 5 rows for players in the opposing team, and 2 rows containing summary data for the two teams). We can separate each dataset into three DataFrames to distinguish each type of data. The first five rows of each DataFrame are displayed below:
 
 ***Note:*** In each of the following DataFrames, we also dropped all of the columns that have all missing values since these values are missing by design (MD).
 
-```python
-games = lol_2022[lol_2022['gameid'].str.contains('game')]
-games = (
-    games
-    .drop(columns=games.columns[games.isna().all()])
-    .set_index('gameid')
-)
-games.head()  # Shows only the first 5 rows
-```
+Games DataFrame:
 
 | gameid           | datacompleteness   | url                                         | league   |   year | split   | playoffs   | date                |   game |   patch |   participantid | side   | position   | playername   | playerid                                  | teamname   | teamid                                  | champion   | ban1     | ban2    | ban3    | ban4   | ban5    |   gamelength | result   |   kills |   deaths |   assists |   teamkills |   teamdeaths |   firstblood |   firstbloodkill |   team kpm |   ckpm |   dragons |   opp_dragons |   dragons (type unknown) |   barons |   opp_barons |   towers |   opp_towers |   inhibitors |   opp_inhibitors |   damagetochampions |     dpm |   damageshare |   damagetakenperminute |   wardsplaced |    wpm |   wardskilled |   wcpm |   controlwardsbought |   visionscore |   vspm |   totalgold |   earnedgold |   earned gpm |   earnedgoldshare |   goldspent |   gspd |   total cs |   minionkills |   monsterkills |   monsterkillsownjungle |   monsterkillsenemyjungle |   cspm |
 |:-----------------|:-------------------|:--------------------------------------------|:---------|-------:|:--------|:-----------|:--------------------|-------:|--------:|----------------:|:-------|:-----------|:-------------|:------------------------------------------|:-----------|:----------------------------------------|:-----------|:---------|:--------|:--------|:-------|:--------|-------------:|:---------|--------:|---------:|----------:|------------:|-------------:|-------------:|-----------------:|-----------:|-------:|----------:|--------------:|-------------------------:|---------:|-------------:|---------:|-------------:|-------------:|-----------------:|--------------------:|--------:|--------------:|-----------------------:|--------------:|-------:|--------------:|-------:|---------------------:|--------------:|-------:|------------:|-------------:|-------------:|------------------:|------------:|-------:|-----------:|--------------:|---------------:|------------------------:|--------------------------:|-------:|
@@ -120,13 +73,7 @@ games.head()  # Shows only the first 5 rows
 | 8401-8401_game_1 | partial            | https://lpl.qq.com/es/stats.shtml?bmid=8401 | LPL      |   2022 | Spring  | False      | 2022-01-10 09:24:26 |      1 |   12.01 |               4 | Blue   | bot        | Able         | oe:player:3205348b11b8cf2b6663318b143928f | Oh My God  | oe:team:f4c4528c6981e104a11ea7548630c23 | Jinx       | Renekton | Lee Sin | Caitlyn | Jayce  | Camille |         1365 | True     |       4 |        1 |         6 |          13 |            6 |          nan |                0 |     0.5714 | 0.8352 |       nan |           nan |                      nan |      nan |          nan |      nan |          nan |          nan |              nan |                9618 | 422.769 |     0.239943  |                254.813 |            23 | 1.011  |            12 | 0.5275 |                    7 |            44 | 1.9341 |       10778 |         7718 |      339.253 |          0.255836 |        9274 |    nan |        199 |           179 |             20 |                      14 |                         0 | 8.7473 |
 | 8401-8401_game_1 | partial            | https://lpl.qq.com/es/stats.shtml?bmid=8401 | LPL      |   2022 | Spring  | False      | 2022-01-10 09:24:26 |      1 |   12.01 |               5 | Blue   | sup        | COLD         | oe:player:3f7ff4daa99912d1b0c8c64340edb9f | Oh My God  | oe:team:f4c4528c6981e104a11ea7548630c23 | Nautilus   | Renekton | Lee Sin | Caitlyn | Jayce  | Camille |         1365 | True     |       1 |        4 |         7 |          13 |            6 |          nan |                0 |     0.5714 | 0.8352 |       nan |           nan |                      nan |      nan |          nan |      nan |          nan |          nan |              nan |                2276 | 100.044 |     0.0567798 |                391.912 |            34 | 1.4945 |             4 | 0.1758 |                   13 |            38 | 1.6703 |        6598 |         3538 |      155.517 |          0.117274 |        5625 |    nan |         22 |            22 |              0 |                       0 |                         0 | 0.967  |
 
-```python
-players = lol_2022[lol_2022['position']!='team']
-players = players[players['datacompleteness']=='complete']
-missing = players.columns[players.isna().sum()==players_mod.shape[0]]
-players = players.drop(columns=missing).set_index('gameid')
-players.head()  # Shows only the first 5 rows
-```
+Players DataFrame:
 
 | gameid                | datacompleteness   |   url | league   |   year | split   | playoffs   | date                |   game |   patch |   participantid | side   | position   | playername   | playerid                                  | teamname                 | teamid                                  | champion   | ban1   | ban2    | ban3   | ban4   | ban5   |   gamelength | result   |   kills |   deaths |   assists |   teamkills |   teamdeaths |   doublekills |   triplekills |   quadrakills |   pentakills |   firstblood |   firstbloodkill |   firstbloodassist |   firstbloodvictim |   team kpm |   ckpm |   firstdragon |   dragons |   opp_dragons |   elementaldrakes |   opp_elementaldrakes |   infernals |   mountains |   clouds |   oceans |   chemtechs |   hextechs |   dragons (type unknown) |   elders |   opp_elders |   firstherald |   heralds |   opp_heralds |   firstbaron |   barons |   opp_barons |   firsttower |   towers |   opp_towers |   firstmidtower |   firsttothreetowers |   turretplates |   opp_turretplates |   inhibitors |   opp_inhibitors |   damagetochampions |     dpm |   damageshare |   damagetakenperminute |   damagemitigatedperminute |   wardsplaced |    wpm |   wardskilled |   wcpm |   controlwardsbought |   visionscore |   vspm |   totalgold |   earnedgold |   earned gpm |   earnedgoldshare |   goldspent |   gspd |   total cs |   minionkills |   monsterkills |   monsterkillsownjungle |   monsterkillsenemyjungle |   cspm |   goldat10 |   xpat10 |   csat10 |   opp_goldat10 |   opp_xpat10 |   opp_csat10 |   golddiffat10 |   xpdiffat10 |   csdiffat10 |   killsat10 |   assistsat10 |   deathsat10 |   opp_killsat10 |   opp_assistsat10 |   opp_deathsat10 |   goldat15 |   xpat15 |   csat15 |   opp_goldat15 |   opp_xpat15 |   opp_csat15 |   golddiffat15 |   xpdiffat15 |   csdiffat15 |   killsat15 |   assistsat15 |   deathsat15 |   opp_killsat15 |   opp_assistsat15 |   opp_deathsat15 |
 |:----------------------|:-------------------|------:|:---------|-------:|:--------|:-----------|:--------------------|-------:|--------:|----------------:|:-------|:-----------|:-------------|:------------------------------------------|:-------------------------|:----------------------------------------|:-----------|:-------|:--------|:-------|:-------|:-------|-------------:|:---------|--------:|---------:|----------:|------------:|-------------:|--------------:|--------------:|--------------:|-------------:|-------------:|-----------------:|-------------------:|-------------------:|-----------:|-------:|--------------:|----------:|--------------:|------------------:|----------------------:|------------:|------------:|---------:|---------:|------------:|-----------:|-------------------------:|---------:|-------------:|--------------:|----------:|--------------:|-------------:|---------:|-------------:|-------------:|---------:|-------------:|----------------:|---------------------:|---------------:|-------------------:|-------------:|-----------------:|--------------------:|--------:|--------------:|-----------------------:|---------------------------:|--------------:|-------:|--------------:|-------:|---------------------:|--------------:|-------:|------------:|-------------:|-------------:|------------------:|------------:|-------:|-----------:|--------------:|---------------:|------------------------:|--------------------------:|-------:|-----------:|---------:|---------:|---------------:|-------------:|-------------:|---------------:|-------------:|-------------:|------------:|--------------:|-------------:|----------------:|------------------:|-----------------:|-----------:|---------:|---------:|---------------:|-------------:|-------------:|---------------:|-------------:|-------------:|------------:|--------------:|-------------:|----------------:|------------------:|-----------------:|
@@ -136,11 +83,7 @@ players.head()  # Shows only the first 5 rows
 | ESPORTSTMNT01_2690210 | complete           |   nan | LCK CL   |   2022 | Spring  | False      | 2022-01-10 07:44:08 |      1 |   12.01 |               4 | Blue   | bot        | Gamin        | oe:player:998b3e49b01ecc41eacc392477a98cf | Fredit BRION Challengers | oe:team:68911b3329146587617ab2973106e23 | Samira     | Karma  | Caitlyn | Syndra | Thresh | Lulu   |         1713 | False    |       2 |        4 |         2 |           9 |           19 |             0 |             0 |             0 |            0 |            1 |                0 |                  1 |                  0 |     0.3152 | 0.9807 |           nan |       nan |           nan |               nan |                   nan |         nan |         nan |      nan |      nan |         nan |        nan |                      nan |      nan |          nan |           nan |       nan |           nan |          nan |        0 |            0 |          nan |      nan |          nan |             nan |                  nan |            nan |                nan |            0 |                0 |               11106 | 389.002 |     0.196358  |                463.853 |                    218.879 |            12 | 0.4203 |             6 | 0.2102 |                    4 |            25 | 0.8757 |       10605 |         6835 |      239.405 |          0.242201 |       10425 |    nan |        226 |           208 |             18 |                     nan |                       nan | 7.9159 |       3600 |     3103 |       78 |           3304 |         2838 |           90 |            296 |          265 |          -12 |           1 |             1 |            0 |               0 |                 0 |                0 |       5461 |     4591 |      115 |           6254 |         5934 |          149 |           -793 |        -1343 |          -34 |           2 |             1 |            2 |               3 |                 3 |                0 |
 | ESPORTSTMNT01_2690210 | complete           |   nan | LCK CL   |   2022 | Spring  | False      | 2022-01-10 07:44:08 |      1 |   12.01 |               5 | Blue   | sup        | Loopy        | oe:player:e9741b3a238723ea6380ef2113fae63 | Fredit BRION Challengers | oe:team:68911b3329146587617ab2973106e23 | Leona      | Karma  | Caitlyn | Syndra | Thresh | Lulu   |         1713 | False    |       1 |        5 |         6 |           9 |           19 |             0 |             0 |             0 |            0 |            1 |                1 |                  0 |                  0 |     0.3152 | 0.9807 |           nan |       nan |           nan |               nan |                   nan |         nan |         nan |      nan |      nan |         nan |        nan |                      nan |      nan |          nan |           nan |       nan |           nan |          nan |        0 |            0 |          nan |      nan |          nan |             nan |                  nan |            nan |                nan |            0 |                0 |                3663 | 128.301 |     0.0647631 |                475.026 |                    490.123 |            29 | 1.0158 |            14 | 0.4904 |                   11 |            69 | 2.4168 |        6678 |         2908 |      101.856 |          0.103054 |        6395 |    nan |         42 |            42 |              0 |                     nan |                       nan | 1.4711 |       2678 |     2161 |       16 |           2150 |         2748 |           15 |            528 |         -587 |            1 |           1 |             1 |            0 |               0 |                 0 |                1 |       3836 |     3588 |       28 |           3393 |         4085 |           21 |            443 |         -497 |            7 |           1 |             2 |            2 |               0 |                 6 |                2 |
 
-```
-teams = lol_2022[lol_2022['position'] == 'team']
-teams = teams[teams['datacompleteness']=='complete']
-teams.head()  # Shows only first 5 rows
-```
+Teams DataFrame:
 
 |                               | datacompleteness   |   url | league   |   year | split   | playoffs   | date                |   game |   patch |   participantid | side   | position   | teamname                      | teamid                                  | ban1    | ban2         | ban3         | ban4     | ban5    |   gamelength | result   |   kills |   deaths |   assists |   teamkills |   teamdeaths |   doublekills |   triplekills |   quadrakills |   pentakills |   firstblood |   team kpm |   ckpm |   firstdragon |   dragons |   opp_dragons |   elementaldrakes |   opp_elementaldrakes |   infernals |   mountains |   clouds |   oceans |   chemtechs |   hextechs |   dragons (type unknown) |   elders |   opp_elders |   firstherald |   heralds |   opp_heralds |   firstbaron |   barons |   opp_barons |   firsttower |   towers |   opp_towers |   firstmidtower |   firsttothreetowers |   turretplates |   opp_turretplates |   inhibitors |   opp_inhibitors |   damagetochampions |     dpm |   damagetakenperminute |   damagemitigatedperminute |   wardsplaced |    wpm |   wardskilled |   wcpm |   controlwardsbought |   visionscore |   vspm |   totalgold |   earnedgold |   earned gpm |   goldspent |       gspd |   minionkills |   monsterkills |   monsterkillsownjungle |   monsterkillsenemyjungle |    cspm |   goldat10 |   xpat10 |   csat10 |   opp_goldat10 |   opp_xpat10 |   opp_csat10 |   golddiffat10 |   xpdiffat10 |   csdiffat10 |   killsat10 |   assistsat10 |   deathsat10 |   opp_killsat10 |   opp_assistsat10 |   opp_deathsat10 |   goldat15 |   xpat15 |   csat15 |   opp_goldat15 |   opp_xpat15 |   opp_csat15 |   golddiffat15 |   xpdiffat15 |   csdiffat15 |   killsat15 |   assistsat15 |   deathsat15 |   opp_killsat15 |   opp_assistsat15 |   opp_deathsat15 |
 |:------------------------------|:-------------------|------:|:---------|-------:|:--------|:-----------|:--------------------|-------:|--------:|----------------:|:-------|:-----------|:------------------------------|:----------------------------------------|:--------|:-------------|:-------------|:---------|:--------|-------------:|:---------|--------:|---------:|----------:|------------:|-------------:|--------------:|--------------:|--------------:|-------------:|-------------:|-----------:|-------:|--------------:|----------:|--------------:|------------------:|----------------------:|------------:|------------:|---------:|---------:|------------:|-----------:|-------------------------:|---------:|-------------:|--------------:|----------:|--------------:|-------------:|---------:|-------------:|-------------:|---------:|-------------:|----------------:|---------------------:|---------------:|-------------------:|-------------:|-----------------:|--------------------:|--------:|-----------------------:|---------------------------:|--------------:|-------:|--------------:|-------:|---------------------:|--------------:|-------:|------------:|-------------:|-------------:|------------:|-----------:|--------------:|---------------:|------------------------:|--------------------------:|--------:|-----------:|---------:|---------:|---------------:|-------------:|-------------:|---------------:|-------------:|-------------:|------------:|--------------:|-------------:|----------------:|------------------:|-----------------:|-----------:|---------:|---------:|---------------:|-------------:|-------------:|---------------:|-------------:|-------------:|------------:|--------------:|-------------:|----------------:|------------------:|-----------------:|
@@ -153,33 +96,13 @@ teams.head()  # Shows only first 5 rows
 #### Univariate Analysis
 Since we will be working with the `dragons` and `teamkills` columns of the `teams` DataFrame in our hypothesis test, we will take a look at the distributions of these columns to see if we can make any inferences.
 
-```python
-teams_copied = teams.copy()
-```
-
-```python
-dragons = px.histogram(teams_copied, 'dragons',
-                       histnorm='probability',
-                       title='Dragons',
-                       labels={'dragons':'# of Dragons', 'probability': 'Probability'})
-dragons
-```
-
 <iframe src="assets/dragons.html" width=800 height=600 frameBorder=0></iframe>
 
-The distribution number of dragons killed is right skewed meaning that it is more likely to kill fewer dragons than more dragons.
-
-```python
-team_kills = px.histogram(teams_copied, 'teamkills',
-                          histnorm='probability',
-                          title='Team Kills',
-                          labels={'teamkills':'# of Team Kills', 'probability': 'Probability'})
-team_kills
-```
+The distribution of dragons is right skewed which suggests that teams are more likely to kill fewer dragons than more dragons.
 
 <iframe src="assets/teamkills.html" width=800 height=600 frameBorder=0></iframe>
 
-The distribution of team kills closely resemble the distribution of dragons kills which suggests that the amount of dragons kills is correlated to a team's team kills. 
+The distribution of team kills closely resemble the distribution of dragons killed which suggests that the amount of dragons killed is correlated to a team's team kills. 
 
 One thing to note about the distribution of team kills, however, is that it is bimodal. We assume that this is because there are a certain amount of teams that play more aggressively, leading to many kills, and there are a certain amount of teams that play more passively leading to fewer team kills. There does not seem to be as much of an in-between. The higher peak on the greater amount of team kills suggests that teams tend to play more aggressively than passively.
 
@@ -193,10 +116,7 @@ Looking at the two distributions, we can infer that the distribution of 20+ team
 
 We can look at how the average number of dragons compare to the number of team kills by aggregating our data.
 
-```python
-avg_dragons_by_id = teams.pivot_table(index = 'gameid', values = ['dragons', 'teamkills'], aggfunc = 'mean').sort_values(by='dragons', ascending=False)
-avg_dragons_by_id.head()  # Shows only the first 5 rows
-```
+***Note:*** Only the first five rows are shown for this DataFrame. The aggregated histogram will be able to provide more insight on what this data means.
 
 | gameid                |   dragons |   teamkills |
 |:----------------------|----------:|------------:|
@@ -211,14 +131,6 @@ avg_dragons_by_id.head()  # Shows only the first 5 rows
 | ESPORTSTMNT02_2551187 |       4   |         6   |
 | ESPORTSTMNT03_2655151 |       4   |        20.5 |
 
-```python
-aggregate = px.histogram(
-    avg_dragons_by_id, x='teamkills', color='dragons', barmode='overlay',
-    title = "Dragon Kills vs. Team Kills (Averaged by Teams)",
-    labels = {'teamkills': '# of Team Kills', 'count': 'Count', 'dragons': '# of Dragons'})
-aggregate
-```
-
 <iframe src="assets/aggregate.html" width=800 height=600 frameBorder=0></iframe>
 
 Observing this overlayed histogram, we can see that teams are most likely to kill 2-3 dragons with a team kills of 10-15. As these histograms are right skewed, teams are less likely to get more team kills than fewer team kills.
@@ -231,73 +143,29 @@ Observing this overlayed histogram, we can see that teams are most likely to kil
 
 In our dataset, we have divided the original dataframe by just keeping the rows that has the value `team` for the `position` column to get the rows that have the overall summary of the 5 individual team member's stats combined. The columns `ban1`, `ban2`, `ban3`, `ban4`, and `ban5` have some missing values that in theory should not be missing. 
 
-Before each game, the team votes 5 times to ban 5 champions so the opposing team cannot pick that chosen champions. We believe that the data in these columns are not missing at random (NMAR) because there are no other information from the dataset that could determine why these inputs are missing and there is no benefit to the team to not ban champions so the reason that these values are missing is currently unknown. To be able to conclude that these columns were missing at random (MAR), we would like to collect some more information such as the total amount of champions banned, and if there was a network interuption that occurred during the banning phase.
+Before each game, the team votes 5 times to ban 5 champions so the opposing team cannot pick that chosen champions. We believe that the data in these columns are not missing at random (NMAR) because there are no other information from the dataset that could determine why these inputs are missing and there is no benefit to the team to not ban champions so the reason that these values are missing is currently unknown. To be able to conclude that these columns were missing at random (MAR), we would like to collect some more information such as the total amount of champions banned, and if there was a network interruption that occurred during the banning phase.
 
-```python
-ban_cols = teams.columns[teams.columns.str.contains('ban')]
-missing_bans = teams[ban_cols][teams[ban_cols].isna().sum(axis=1) >= 1]
-missing_bans.head()  # Shows only the first 5 rows
-```
+The following DataFrame shows the 5 ban columns which has missing values:
 
-|                                 | ban1     | ban2         | ban3         | ban4    | ban5         |
-|:--------------------------------|:---------|:-------------|:-------------|:--------|:-------------|
-| ('ESPORTSTMNT01_2690705', 1355) | Renekton | Twisted Fate | Vex          | Jayce   | nan          |
-| ('ESPORTSTMNT01_2691376', 1991) | Viktor   | Lulu         | nan          | Syndra  | Twisted Fate |
-| ('ESPORTSTMNT01_2691557', 2219) | Lee Sin  | Renekton     | nan          | Camille | LeBlanc      |
-| ('ESPORTSTMNT01_2693131', 3275) | Caitlyn  | Jinx         | nan          | Lulu    | Leona        |
-| ('ESPORTSTMNT01_2697196', 6899) | Sylas    | Viktor       | nan          | Syndra  | Vex          |
-| ('ESPORTSTMNT01_2697476', 7391) | Hecarim  | Camille      | Akali        | Lulu    | nan          |
-| ('ESPORTSTMNT01_2697895', 8447) | Caitlyn  | Diana        | nan          | Lulu    | Leona        |
-| ('ESPORTSTMNT01_2701400', 1859) | Viktor   | Vex          | Sett         | Gwen    | nan          |
-| ('ESPORTSTMNT01_2704760', 4763) | Caitlyn  | Karma        | Twisted Fate | Lulu    | nan          |
-| ('ESPORTSTMNT01_2706748', 6418) | Diana    | Akali        | nan          | Caitlyn | nan          |
+***Note:*** Only the first five rows are shown for this DataFrame. 
+
+| ban1     | ban2         | ban3   | ban4    | ban5         |
+|:---------|:-------------|:-------|:--------|:-------------|
+| nan      | nan          | nan    | Lux     | LeBlanc      |
+| Renekton | Twisted Fate | Vex    | Jayce   | nan          |
+| Viktor   | Vex          | Sett   | Gwen    | nan          |
+| Viktor   | Lulu         | nan    | Syndra  | Twisted Fate |
+| Lee Sin  | Renekton     | nan    | Camille | LeBlanc      |
 
 #### Missingness Dependency
 
-To determine missingness dependency, we created three separate functions. `diff_of_means` will calculate our test statistic, `simulate_null` will calculate our observered statistic, and `pval` calculates our p-value using 1000 simulations. 
-
-```python
-def diff_of_means(data, col):
-    a = (data[data['total_bans'] == 5])[col].mean()
-    b = (data[data['total_bans'] != 5])[col].mean()
-    return abs(a-b)
-```
-
-```python
-def simulate_null(data, col):
-    new = data[data['total_bans']==5].sample(n = data[data['total_bans']!=5].shape[0])
-    alldata = pd.concat([data[data['total_bans']!=5], new])
-    new_col = np.random.permutation(alldata['total_bans'])
-    alldata['total_bans'] = new_col
-    return diff_of_means(alldata, col)
-```
-
-```python
-def pval(data, col):
-    result = []
-    for i in range(1000):
-        result.append(simulate_null(data, col))
-    return (diff_of_means(data,col) <= result).mean()
-```
+To determine missingness dependency, behind the scenes we created three separate functions. `diff_of_means` will calculated our test statistic, `simulate_null` calculated our observed statistic, and `pval` calculates our p-value using 1000 simulations. 
 
 We will try testing missingness dependency of two columns: `deaths` and `kills`. The following DataFrame will filter our players DataFrame, and will sum up the ban columns.
 
-```python
-bans = players[['ban1', 'ban2', 'ban3', 'ban4', 'ban5']]
-total_bans = (~bans.isna()).sum(axis = 1)
-players_mod = players_mod[['deaths', 'kills']]
-players_mod = players_mod.assign(total_bans = total_bans)
-players_mod.head()  # Shows only the first 5 rows
-```
-
 Computing our p-value on the `kills` column, we get a p-value of 0.662. 
 
-```python
-pval(players_mod, 'kills')
-```
-0.662
-
-As we can see from this overlayed histogram, the distribution of `kills` does not match closely to the distribution of total bans which confirms our conclusion.
+From the overlayed distribution below, we can see the distribution of `kills` does not match closely to the distribution of total bans which confirms our conclusion.
 
 <iframe src="assets/kills-total-bans.html" width=800 height=600 frameBorder=0></iframe>
 
@@ -305,16 +173,13 @@ Because we got a p-value that is > 0.05, we retain the null hypothesis; the miss
 
 Computing our p-value on the `deaths` column, we get a p-value of 0.048. 
 
-```python
-pval(players_mod, 'deaths')
-```
 0.048
 
 This overlayed histogram shows that the distribution of `kills` does match closely to the distribution of total bans which confirms our conclusion.
 
 <iframe src="assets/deaths-total-bans.html" width=800 height=600 frameBorder=0></iframe>
 
-Because we got a p-value that is <= 0.05, we reject the null hypothesis; the missingness of the `deaths` column seems to be ***dependent*** on the total bans.
+Because we got a p-value that is <= 0.05, we reject the null hypothesis; the missingness of the `deaths` column seems to be ***dependent*** of the total bans.
 
 ---
 
@@ -324,50 +189,18 @@ Question: Does the proportion of teams with 20 or more team kills with first dra
 
 This question will help us answer the question that we want to investigate further which is "Does the amount of dragons killed correlate to more team kills?"
 
-```python
-# Three or more dragons
-three_or_more = teams[(teams['dragons'] >= 3)]
-three_or_more.head() # Shows only the first 5 rows
-```
+***Note:*** Only the first five rows are shown for this DataFrame. 
 
-|                               | datacompleteness   |   url | league   |   year | split   | playoffs   | date                |   game |   patch |   participantid | side   | position   | teamname                        | teamid                                  | ban1    | ban2         | ban3         | ban4       | ban5    |   gamelength | result   |   kills |   deaths |   assists |   teamkills |   teamdeaths |   doublekills |   triplekills |   quadrakills |   pentakills |   firstblood |   team kpm |   ckpm |   firstdragon |   dragons |   opp_dragons |   elementaldrakes |   opp_elementaldrakes |   infernals |   mountains |   clouds |   oceans |   chemtechs |   hextechs |   dragons (type unknown) |   elders |   opp_elders |   firstherald |   heralds |   opp_heralds |   firstbaron |   barons |   opp_barons |   firsttower |   towers |   opp_towers |   firstmidtower |   firsttothreetowers |   turretplates |   opp_turretplates |   inhibitors |   opp_inhibitors |   damagetochampions |     dpm |   damagetakenperminute |   damagemitigatedperminute |   wardsplaced |    wpm |   wardskilled |   wcpm |   controlwardsbought |   visionscore |   vspm |   totalgold |   earnedgold |   earned gpm |   goldspent |       gspd |   minionkills |   monsterkills |   monsterkillsownjungle |   monsterkillsenemyjungle |    cspm |   goldat10 |   xpat10 |   csat10 |   opp_goldat10 |   opp_xpat10 |   opp_csat10 |   golddiffat10 |   xpdiffat10 |   csdiffat10 |   killsat10 |   assistsat10 |   deathsat10 |   opp_killsat10 |   opp_assistsat10 |   opp_deathsat10 |   goldat15 |   xpat15 |   csat15 |   opp_goldat15 |   opp_xpat15 |   opp_csat15 |   golddiffat15 |   xpdiffat15 |   csdiffat15 |   killsat15 |   assistsat15 |   deathsat15 |   opp_killsat15 |   opp_assistsat15 |   opp_deathsat15 |
-|:------------------------------|:-------------------|------:|:---------|-------:|:--------|:-----------|:--------------------|-------:|--------:|----------------:|:-------|:-----------|:--------------------------------|:----------------------------------------|:--------|:-------------|:-------------|:-----------|:--------|-------------:|:---------|--------:|---------:|----------:|------------:|-------------:|--------------:|--------------:|--------------:|-------------:|-------------:|-----------:|-------:|--------------:|----------:|--------------:|------------------:|----------------------:|------------:|------------:|---------:|---------:|------------:|-----------:|-------------------------:|---------:|-------------:|--------------:|----------:|--------------:|-------------:|---------:|-------------:|-------------:|---------:|-------------:|----------------:|---------------------:|---------------:|-------------------:|-------------:|-----------------:|--------------------:|--------:|-----------------------:|---------------------------:|--------------:|-------:|--------------:|-------:|---------------------:|--------------:|-------:|------------:|-------------:|-------------:|------------:|-----------:|--------------:|---------------:|------------------------:|--------------------------:|--------:|-----------:|---------:|---------:|---------------:|-------------:|-------------:|---------------:|-------------:|-------------:|------------:|--------------:|-------------:|----------------:|------------------:|-----------------:|-----------:|---------:|---------:|---------------:|-------------:|-------------:|---------------:|-------------:|-------------:|------------:|--------------:|-------------:|----------------:|------------------:|-----------------:|
-| ('ESPORTSTMNT01_2690210', 11) | complete           |   nan | LCK CL   |   2022 | Spring  | False      | 2022-01-10 07:44:08 |      1 |   12.01 |             200 | Red    | team       | Nongshim RedForce Challengers   | oe:team:d2dc3681437e2beb2bb4742477108ff | Lee Sin | Twisted Fate | Zoe          | Nautilus   | Rell    |         1713 | True     |      19 |        9 |        62 |          19 |            9 |             6 |             0 |             0 |            0 |            0 |     0.6655 | 0.9807 |             1 |         3 |             1 |                 3 |                     1 |           2 |           1 |        0 |        0 |           0 |          0 |                      nan |        0 |            0 |             0 |         0 |             2 |            0 |        0 |            0 |            0 |        6 |            3 |               0 |                    0 |              0 |                  5 |            1 |                0 |               79912 | 2799.02 |                3009.67 |                    2872.33 |            93 | 3.2574 |            51 | 1.7863 |                   45 |           205 | 7.1804 |       52617 |        33769 |     1182.8   |       45850 |  0.0283123 |           792 |            184 |                     nan |                       nan | 34.1856 |      14695 |    18076 |      330 |          16218 |        18213 |          322 |          -1523 |         -137 |            8 |           0 |             0 |            3 |               3 |                 5 |                0 |      24699 |    29618 |      510 |          24806 |        28001 |          487 |           -107 |         1617 |           23 |           6 |            18 |            5 |               5 |                10 |                6 |
-| ('ESPORTSTMNT01_2690219', 23) | complete           |   nan | LCK CL   |   2022 | Spring  | False      | 2022-01-10 08:38:24 |      1 |   12.01 |             200 | Red    | team       | Liiv SANDBOX Challengers        | oe:team:5380cdbc2ad2b8082624f48f99f6672 | LeBlanc | Yuumi        | Twisted Fate | Karma      | Alistar |         2114 | True     |      16 |        3 |        39 |          16 |            3 |             1 |             0 |             0 |            0 |            1 |     0.4541 | 0.5393 |             1 |         4 |             1 |                 4 |                     1 |           0 |           2 |        1 |        0 |           0 |          1 |                      nan |        0 |            0 |             0 |         1 |             1 |            1 |        2 |            0 |            1 |       11 |            3 |               1 |                    1 |              3 |                  2 |            2 |                0 |               74855 | 2124.55 |                2745.72 |                    2868.42 |           129 | 3.6613 |            70 | 1.9868 |                   65 |           346 | 9.8202 |       71004 |        48063 |     1364.13  |       66410 |  0.207137  |          1013 |            244 |                     nan |                       nan | 35.6764 |      16558 |    19048 |      344 |          14939 |        17462 |          317 |           1619 |         1586 |           27 |           3 |             3 |            1 |               1 |                 1 |                3 |      25285 |    29754 |      555 |          23522 |        28848 |          533 |           1763 |          906 |           22 |           3 |             3 |            1 |               1 |                 1 |                3 |
-| ('ESPORTSTMNT01_2690227', 34) | complete           |   nan | LCK CL   |   2022 | Spring  | False      | 2022-01-10 09:51:16 |      1 |   12.01 |             100 | Blue   | team       | KT Rolster Challengers          | oe:team:b9733b8e8aa341319bbaf1035198a28 | Syndra  | Caitlyn      | Karma        | Gragas     | Vex     |         1972 | True     |      14 |        5 |        42 |          14 |            5 |             3 |             1 |             0 |            0 |            0 |     0.426  | 0.5781 |             1 |         4 |             1 |                 4 |                     1 |           0 |           1 |        0 |        1 |           0 |          2 |                      nan |        0 |            0 |             0 |         1 |             1 |            1 |        1 |            0 |            1 |       11 |            2 |               1 |                    1 |              1 |                  4 |            2 |                0 |               67376 | 2049.98 |                2327.89 |                    1776.27 |           119 | 3.6207 |            51 | 1.5517 |                   68 |           264 | 8.0325 |       62868 |        41372 |     1258.78  |       57615 |  0.165672  |           874 |            269 |                     nan |                       nan | 34.7769 |      15466 |    19600 |      368 |          15569 |        18787 |          355 |           -103 |          813 |           13 |           0 |             0 |            1 |               1 |                 1 |                0 |      24795 |    31342 |      560 |          23604 |        29044 |          545 |           1191 |         2298 |           15 |           3 |             8 |            1 |               1 |                 1 |                3 |
-| ('ESPORTSTMNT01_2690255', 46) | complete           |   nan | LCK CL   |   2022 | Spring  | False      | 2022-01-10 10:58:50 |      1 |   12.01 |             100 | Blue   | team       | DWG KIA Challengers             | oe:team:6ade097e0260f32abcd4165c83b8795 | LeBlanc | Yuumi        | Karma        | Zoe        | Viktor  |         2488 | False    |      16 |       13 |        41 |          16 |           13 |             3 |             0 |             0 |            0 |            1 |     0.3859 | 0.6994 |             0 |         4 |             2 |                 4 |                     1 |           0 |           0 |        0 |        0 |           1 |          3 |                      nan |        0 |            1 |             1 |         1 |             1 |            0 |        0 |            2 |            1 |        5 |            9 |               1 |                    1 |              4 |                  0 |            0 |                1 |               70231 | 1693.67 |                2162.7  |                    2307.93 |           137 | 3.3039 |            91 | 2.1945 |                   68 |           297 | 7.1624 |       69897 |        43137 |     1040.28  |       68115 | -0.0642274 |          1071 |            221 |                     nan |                       nan | 31.1576 |      15978 |    17714 |      297 |          15641 |        18229 |          334 |            337 |         -515 |          -37 |           4 |            11 |            2 |               2 |                 5 |                4 |      24413 |    29077 |      517 |          23863 |        30336 |          557 |            550 |        -1259 |          -40 |           4 |            11 |            2 |               2 |                 5 |                4 |
-| ('ESPORTSTMNT01_2690264', 59) | complete           |   nan | LCK CL   |   2022 | Spring  | False      | 2022-01-10 12:10:56 |      1 |   12.01 |             200 | Red    | team       | Hanwha Life Esports Challengers | oe:team:2a5e5fceaa40b335ebc6b49359abf62 | Jayce   | Lee Sin      | Diana        | Tryndamere | Jax     |         2020 | False    |       8 |       13 |        14 |           8 |           13 |             2 |             0 |             0 |            0 |            1 |     0.2376 | 0.6238 |             1 |         4 |             1 |                 4 |                     0 |           0 |           1 |        2 |        1 |           0 |          0 |                      nan |        0 |            1 |             0 |         0 |             2 |            0 |        0 |            1 |            0 |        1 |           11 |               0 |                    0 |              4 |                  6 |            0 |                3 |               41246 | 1225.13 |                2644.31 |                    2287.75 |            95 | 2.8218 |            48 | 1.4257 |                   41 |           235 | 6.9802 |       53693 |        31710 |      941.881 |       51810 | -0.116171  |           898 |            204 |                     nan |                       nan | 32.7327 |      16247 |    19128 |      344 |          15346 |        18131 |          331 |            901 |          997 |           13 |           2 |             2 |            0 |               0 |                 0 |                2 |      24513 |    30080 |      543 |          25991 |        30284 |          534 |          -1478 |         -204 |            9 |           3 |             3 |            3 |               3 |                 7 |                3 |
-
-```python
-# Proportion of teams with 20+ kills, and 3 or more dragons
-three_or_more_prop = (three_or_more['teamkills'] >= 20).mean()
-three_or_more_prop
-```
+We found the proportion of teams with 20+ kills, and 3 or more dragons to be:
 0.41138366783476693
 
-```python
-# Proportion of teams with 20+ kills in the overall population
-overall_prop = (teams['teamkills'] >= 20).mean()
-overall_prop
-```
+While the proportion of teams with 20+ kills in the overall population to be:
+0.26791937458792503
 
-Null hypothesis: The proportion of teams with 20 or more team kills with three or more dragons is ***equal*** to the proportion of teams with 20 or more team kills in the overall population
+Our null hypothesis is the proportion of teams with 20 or more team kills with three or more dragons is ***equal*** to the proportion of teams with 20 or more team kills in the overall population.
 
-Alternative hypothesis: The proportion of teams with 20 or more team kills with three or more dragons ***not equal*** to the proportion of teams with 20 or more team kills in the overall population
+Our alternative hypothesis is the proportion of teams with 20 or more team kills with three or more dragons is ***not equal*** to the proportion of teams with 20 or more team kills in the overall population.
 
-```python
-observed = three_or_more_prop
-```
-
-```python
-simulated = np.random.multinomial(teams.shape[0], [overall_prop, 1-overall_prop], size=100_000)[:,0] / teams.shape[0]
-simulated
-```
-array([0.2676839 , 0.2660827 , 0.26980315, ..., 0.26975605, 0.26490534, 0.26857869])
-
-```python
-(observed <= simulated).mean()
-```
-0.0
+Simulating our test statistics, we get a p-value of 0%.
 
  With a p-value of 0%, We ***reject*** the null hypothesis; The proportion of teams with 20+ kills between teams with three or more dragons, and the overall population are seemingly different.
