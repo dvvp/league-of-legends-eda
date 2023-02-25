@@ -6,6 +6,7 @@ Created by Devin Pham and Minh Vo
 ### Code
 
 Importing the necessary Python libraries...
+
 ```python
 import pandas as pd
 import numpy as np
@@ -18,6 +19,7 @@ pd.options.plotting.backend = 'plotly'
 ```
 
 Reading in our dataset...
+
 ```python
 path = os.path.join('data', '2022_LoL_esports_match_data_from_OraclesElixir.csv')
 lol_2022 = pd.read_csv(path, low_memory=False)  # low_memory=False allows pandas to process null values
@@ -76,6 +78,7 @@ The original dataset contains 149232 rows and 123 columns. We will be using 3 co
 ---
 
 ### Cleaning and EDA
+
 #### Data Cleaning
 Since many of these columns should be of type `bool`, but they are not, we will convert these columns to their appropriate type.
 
@@ -226,4 +229,15 @@ aggregate
 
 <iframe src="assets/aggregate.html" width=800 height=600 frameBorder=0></iframe>
 
-Observing this overlayed histogram, we can see that teams are most likely to kill 2-3 dragons with a teamkills of 10-15. As these histograms are right skewed, teams are less likely to get higher teamkills than fewer team kills.
+Observing this overlayed histogram, we can see that teams are most likely to kill 2-3 dragons with a teamkills of 10-15. As these histograms are right skewed, teams are less likely to get more teamkills than fewer team kills.
+
+---
+
+### Assessment of Missingness
+
+#### NMAR Analysis
+
+In our dataset, we have divided the original dataframe by just keeping the rows that has the value `team` for the `position` column to get the rows that have the overall summary of the 5 individual team member's stats combined. The columns `ban1`, `ban2`, `ban3`, `ban4`, and `ban5` have some missing values that in theory should not be missing. 
+
+Before each game, the team votes 5 times to ban 5 champions so the opposing team cannot pick that chosen champions. We believe that the data in these columns are not missing at random (NMAR) because there are no other information from the dataset that could determine why these inputs are missing and there is no benefit to the team to not ban champions so the reason that these values are missing is currently unknown. To be able to conclude that these columns were missing at random (MAR), we would like to collect some more information such as the total amount of champions banned, and if there was a network interuption that occurred during the banning phase.
+
