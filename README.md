@@ -217,4 +217,5 @@ avg_dragons_by_id.head(10)
 ```python
 px.histogram(avg_dragons_by_id, x='teamkills', color='dragons', barmode='overlay')
 ```
-<iframe src="assets/aggregates.html" width=800 height=600 frameBorder=0></iframe>
+
+<iframe src="assets/aggregate.html" width=800 height=600 frameBorder=0></iframe>
