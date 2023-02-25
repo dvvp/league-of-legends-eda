@@ -199,7 +199,7 @@ Looking at the two distributions, we can infer that the distribution of 20+ team
 
 We can look at how the average number of dragons compare to the number of team kills by aggregating our data.
 
-***Note:*** We are only showing the first 10 rows of the pivot table since it is unable to be truncated. We can get a better picture of the data by viewing the histogram below.
+***Note:*** We are only showing the first 10 rows of the pivot table. We can get a better picture of the data by viewing the histogram below.
 
 ```python
 avg_dragons_by_id = players.pivot_table(index = 'gameid', values = ['dragons', 'teamkills'], aggfunc = 'mean').sort_values(by='dragons', ascending=False)
@@ -241,3 +241,35 @@ In our dataset, we have divided the original dataframe by just keeping the rows 
 
 Before each game, the team votes 5 times to ban 5 champions so the opposing team cannot pick that chosen champions. We believe that the data in these columns are not missing at random (NMAR) because there are no other information from the dataset that could determine why these inputs are missing and there is no benefit to the team to not ban champions so the reason that these values are missing is currently unknown. To be able to conclude that these columns were missing at random (MAR), we would like to collect some more information such as the total amount of champions banned, and if there was a network interuption that occurred during the banning phase.
 
+***Note:*** We are only showing the first 10 rows of the pivot table to provide a visual of the nan values that can be found in each of the `ban` columns
+
+```python
+ban_cols = teams.columns[teams.columns.str.contains('ban')]
+missing_bans = teams[ban_cols][teams[ban_cols].isna().sum(axis=1) >= 1]
+missing_bans.head(10)
+```
+
+|                                 | ban1     | ban2         | ban3         | ban4    | ban5         |
+|:--------------------------------|:---------|:-------------|:-------------|:--------|:-------------|
+| ('ESPORTSTMNT01_2690705', 1355) | Renekton | Twisted Fate | Vex          | Jayce   | nan          |
+| ('ESPORTSTMNT01_2691376', 1991) | Viktor   | Lulu         | nan          | Syndra  | Twisted Fate |
+| ('ESPORTSTMNT01_2691557', 2219) | Lee Sin  | Renekton     | nan          | Camille | LeBlanc      |
+| ('ESPORTSTMNT01_2693131', 3275) | Caitlyn  | Jinx         | nan          | Lulu    | Leona        |
+| ('ESPORTSTMNT01_2697196', 6899) | Sylas    | Viktor       | nan          | Syndra  | Vex          |
+| ('ESPORTSTMNT01_2697476', 7391) | Hecarim  | Camille      | Akali        | Lulu    | nan          |
+| ('ESPORTSTMNT01_2697895', 8447) | Caitlyn  | Diana        | nan          | Lulu    | Leona        |
+| ('ESPORTSTMNT01_2701400', 1859) | Viktor   | Vex          | Sett         | Gwen    | nan          |
+| ('ESPORTSTMNT01_2704760', 4763) | Caitlyn  | Karma        | Twisted Fate | Lulu    | nan          |
+| ('ESPORTSTMNT01_2706748', 6418) | Diana    | Akali        | nan          | Caitlyn | nan          |
+
+#### Missingness Dependency
+
+(TODO)
+
+---
+
+### Hypothesis Test
+
+Question: Does the proportion of teams with 20 or more team kills with first dragon and three or more dragons equal to the proportion of teams with 20 or more team kills in the overall population?
+
+This question will help us answer the question that we want to investigate further which is "Does the amount of dragons killed correlate to more team kills?"
