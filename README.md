@@ -161,9 +161,9 @@ teams_copied = teams.copy()
 ```
 
 ```python
-dragons = px.histogram(teams_copied, 'dragons', 
-                       title='Dragons', 
-                       histnorm='probability', 
+dragons = px.histogram(teams_copied, 'dragons',
+                       histnorm='probability',
+                       title='Dragons',
                        labels={'dragons':'# of Dragons', 'probability': 'Probability'})
 dragons
 ```
@@ -174,9 +174,9 @@ The distribution number of dragons killed is right skewed meaning that it is mor
 
 ```python
 team_kills = px.histogram(teams_copied, 'teamkills',
-                         title='Team Kills',
-                         histnorm='probability',
-                         labels={'teamkills':'# of Team Kills', 'probability': 'Probability'})
+                          histnorm='probability',
+                          title='Team Kills',
+                          labels={'teamkills':'# of Team Kills', 'probability': 'Probability'})
 team_kills
 ```
 
