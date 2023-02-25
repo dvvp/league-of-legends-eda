@@ -44,9 +44,9 @@ Question we plan to investigate further:
 
 - **Does the amount of dragons kills correlate to more team kills?**
 
-Killing a dragon in the game grants your team small buffs in the game that would give you an edge over your opponents. By having more dragons, theoretically, your team should accumulate a higher amount of kills because of the multiple buffs that are granted Answering this question will provide professional League of Legends teams insight on one of the many factors that may influence their success in gaming tournaments.
+Killing a dragon in [League of Legends](https://en.wikipedia.org/wiki/League_of_Legends)grants your team small buffs in the game that would give you an edge over your opponents. By having more dragons, theoretically, your team should accumulate a higher amount of kills because of the multiple buffs that are granted Answering this question will provide professional League of Legends teams insight on one of the many factors that may influence their success in gaming tournaments.
 
-The dataset that we will be using is the 2022 [League of Legends](https://en.wikipedia.org/wiki/League_of_Legends) esports match data from the website [Oracle's Elixir](https://oracleselixir.com/tools/downloads) (OE) as it is the most recent complete dataset that they have. The first 5 rows of the DataFrame and the DataFrame's dimensions are displayed below:
+The dataset that we will be using is the 2022 League of Legends esports match data from the website [Oracle's Elixir](https://oracleselixir.com/tools/downloads) (OE) as it is the most recent complete dataset that they have. The first 5 rows of the DataFrame and the DataFrame's dimensions are displayed below:
 
 ```python
 lol_2022.head()
@@ -189,3 +189,5 @@ One thing to note about the distribution of team kills, however, is that it is b
 #### Bivariate Analysis
 
 <iframe src="assets/dragons-vs-teamkills.html" width=800 height=600 frameBorder=0></iframe>
+
+Looking at the two distributions, we can infer that the distribution of 20+ team kills for teams with three or more dragon kills is different from the same distribution, but within all teams. We can later try to confirm this using a hypothesis test.
