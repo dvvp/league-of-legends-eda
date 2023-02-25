@@ -189,8 +189,6 @@ Question: Does the proportion of teams with 20 or more team kills with first dra
 
 This question will help us answer the question that we want to investigate further which is "Does the amount of dragons killed correlate to more team kills?"
 
-***Note:*** Only the first five rows are shown for this DataFrame. 
-
 We found the proportion of teams with 20+ kills, and 3 or more dragons to be:
 0.41138366783476693
 
