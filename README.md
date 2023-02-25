@@ -116,7 +116,7 @@ Looking at the two distributions, we can infer that the distribution of 20+ team
 
 We can look at how the average number of dragons compare to the number of team kills by aggregating our data.
 
-***Note:*** Only the first five rows are shown for this DataFrame. The aggregated histogram will be able to provide more insight on what this data means.
+***Note:*** Only the first ten rows are shown for this DataFrame. The aggregated histogram will be able to provide more insight on what this data means.
 
 | gameid                |   dragons |   teamkills |
 |:----------------------|----------:|------------:|
