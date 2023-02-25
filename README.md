@@ -286,7 +286,7 @@ def pval(data, col):
     return (diff_of_means(data,col) <= result).mean()
 ```
 
-We will try testing missingness dependency of two columns: `deaths` and `kills`. The following DataFrame will filter our 
+We will try testing missingness dependency of two columns: `deaths` and `kills`. The following DataFrame will filter our players DataFrame
 
 ```python
 bans = players[['ban1', 'ban2', 'ban3', 'ban4', 'ban5']]
@@ -303,6 +303,10 @@ pval(players_mod, 'kills')
 ```
 0.662
 
+As we can see from this overlayed histogram, the distribution of `kills` does not match closely to the distribution of total bans which confirms our conclusion.
+
+<iframe src="assets/kills-total-bans.html" width=800 height=600 frameBorder=0></iframe>
+
 Because we got a p-value that is > 0.05, we retain the null hypothesis; the missingness of `kills` column seems to be ***independent*** of the total bans.
 
 Computing our p-value on the `deaths` column, we get a p-value of 0.048. 
@@ -311,6 +315,10 @@ Computing our p-value on the `deaths` column, we get a p-value of 0.048.
 pval(players_mod, 'deaths')
 ```
 0.048
+
+This overlayed histogram shows that the distribution of `kills` does match closely to the distribution of total bans which confirms our conclusion.
+
+<iframe src="assets/deaths-total-bans.html" width=800 height=600 frameBorder=0></iframe>
 
 Because we got a p-value that is <= 0.05, we reject the null hypothesis; the missingness of the `deaths` column seems to be ***dependent*** on the total bans.
 
