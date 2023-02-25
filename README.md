@@ -215,7 +215,11 @@ avg_dragons_by_id.head(10)
 | ESPORTSTMNT03_2655151 |       4   |        20.5 |
 
 ```python
-px.histogram(avg_dragons_by_id, x='teamkills', color='dragons', barmode='overlay')
+aggregate = px.histogram(
+    avg_dragons_by_id, x='teamkills', color='dragons', barmode='overlay',
+    title = "Dragon Kills vs. Team Kills (Averaged by Teams)",
+    labels = {'teamkills': '# of Team Kills', 'count': 'Count', 'dragons': '# of Dragons'})
+aggregate
 ```
 
 <iframe src="assets/aggregate.html" width=800 height=600 frameBorder=0></iframe>
