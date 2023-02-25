@@ -46,9 +46,9 @@ Question we plan to investigate further:
 
 - **Does the amount of dragons kills correlate to more team kills?**
 
-Killing a dragon in [League of Legends](https://en.wikipedia.org/wiki/League_of_Legends) grants your team small buffs in the game that would give you an edge over your opponents. By having more dragons, theoretically, your team should accumulate a higher amount of kills because of the multiple buffs that are granted Answering this question will provide professional League of Legends teams insight on one of the many factors that may influence their success in gaming tournaments.
+Killing a dragon in [League of Legends](https://en.wikipedia.org/wiki/League_of_Legends) grants your team small buffs in the game that would give you an edge over your opponents. By having more dragons, theoretically, your team should accumulate a higher amount of kills because of the multiple buffs that are granted. Answering this question will provide professional League of Legends teams insight on one of the many factors that may influence their success in gaming tournaments.
 
-The dataset that we will be using is the 2022 League of Legends esports match data from the website [Oracle's Elixir](https://oracleselixir.com/tools/downloads) (OE) as it is the most recent complete dataset that they have. The first 5 rows of the DataFrame and the DataFrame's dimensions are displayed below:
+The dataset that we will primarily be using is the 2022 League of Legends esports match data from the website [Oracle's Elixir](https://oracleselixir.com/tools/downloads) (OE) as it is the most recent complete dataset that they have. The first 5 rows of the DataFrame and the DataFrame's dimensions are displayed below:
 
 ```python
 lol_2022.head()
@@ -69,11 +69,11 @@ lol_2022.shape  # (rows, columns)
 
 The original dataset contains 149232 rows and 123 columns. We will be using 3 columns. Using OE's [definitions page](https://oracleselixir.com/tools/downloads) along with our background on the game, we defined these columns below:
 
-| Column           | Type   | Description                    |
-|:-----------------|:-------|:-------------------------------|
-| gameid           | object | Unique identifier to each game |
-| datacompleteness | object | Whether the data is complete   |
-| url              | object | Webpage address to game        |
+| Column           | Type   | Description                         |
+|:-----------------|:-------|:------------------------------------|
+| gameid           | object | Unique identifier to each game      |
+| dragons          | int    | The number of dragons a team kills  |
+| teamkills        | int    | The number of opponents a team kills|
 
 ---
 
