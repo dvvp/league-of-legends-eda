@@ -196,6 +196,8 @@ Looking at the two distributions, we can infer that the distribution of 20+ team
 
 We can look at how the average number of dragons compare to the number of team kills by aggregating our data.
 
+***Note:*** We are only showing the first 10 rows of the pivot table since it is unable to be truncated. We can get a better picture of the data by viewing the histogram below.
+
 ```python
 avg_dragons_by_id = players.pivot_table(index = 'gameid', values = ['dragons', 'teamkills'], aggfunc = 'mean').sort_values(by='dragons', ascending=False)
 avg_dragons_by_id.head(10)
