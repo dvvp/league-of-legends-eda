@@ -121,12 +121,10 @@ games.head()  # Shows only the first 5 rows
 | 8401-8401_game_1 | partial            | https://lpl.qq.com/es/stats.shtml?bmid=8401 | LPL      |   2022 | Spring  | False      | 2022-01-10 09:24:26 |      1 |   12.01 |               5 | Blue   | sup        | COLD         | oe:player:3f7ff4daa99912d1b0c8c64340edb9f | Oh My God  | oe:team:f4c4528c6981e104a11ea7548630c23 | Nautilus   | Renekton | Lee Sin | Caitlyn | Jayce  | Camille |         1365 | True     |       1 |        4 |         7 |          13 |            6 |          nan |                0 |     0.5714 | 0.8352 |       nan |           nan |                      nan |      nan |          nan |      nan |          nan |          nan |              nan |                2276 | 100.044 |     0.0567798 |                391.912 |            34 | 1.4945 |             4 | 0.1758 |                   13 |            38 | 1.6703 |        6598 |         3538 |      155.517 |          0.117274 |        5625 |    nan |         22 |            22 |              0 |                       0 |                         0 | 0.967  |
 
 ```python
-players = lol_2022[~lol_2022['gameid'].str.contains('game')]
-players = (
-    players
-    .drop(columns=players.columns[players.isna().all()])
-    .set_index('gameid')
-)
+players = lol_2022[lol_2022['position']!='team']
+players = players[players['datacompleteness']=='complete']
+missing = players.columns[players.isna().sum()==players_mod.shape[0]]
+players = players.drop(columns=missing).set_index('gameid')
 players.head()  # Shows only the first 5 rows
 ```
 
@@ -139,13 +137,9 @@ players.head()  # Shows only the first 5 rows
 | ESPORTSTMNT01_2690210 | complete           |   nan | LCK CL   |   2022 | Spring  | False      | 2022-01-10 07:44:08 |      1 |   12.01 |               5 | Blue   | sup        | Loopy        | oe:player:e9741b3a238723ea6380ef2113fae63 | Fredit BRION Challengers | oe:team:68911b3329146587617ab2973106e23 | Leona      | Karma  | Caitlyn | Syndra | Thresh | Lulu   |         1713 | False    |       1 |        5 |         6 |           9 |           19 |             0 |             0 |             0 |            0 |            1 |                1 |                  0 |                  0 |     0.3152 | 0.9807 |           nan |       nan |           nan |               nan |                   nan |         nan |         nan |      nan |      nan |         nan |        nan |                      nan |      nan |          nan |           nan |       nan |           nan |          nan |        0 |            0 |          nan |      nan |          nan |             nan |                  nan |            nan |                nan |            0 |                0 |                3663 | 128.301 |     0.0647631 |                475.026 |                    490.123 |            29 | 1.0158 |            14 | 0.4904 |                   11 |            69 | 2.4168 |        6678 |         2908 |      101.856 |          0.103054 |        6395 |    nan |         42 |            42 |              0 |                     nan |                       nan | 1.4711 |       2678 |     2161 |       16 |           2150 |         2748 |           15 |            528 |         -587 |            1 |           1 |             1 |            0 |               0 |                 0 |                1 |       3836 |     3588 |       28 |           3393 |         4085 |           21 |            443 |         -497 |            7 |           1 |             2 |            2 |               0 |                 6 |                2 |
 
 ```
-teams = (
-    players
-    .reset_index()
-    .groupby('gameid').apply(lambda df: df.iloc[-2:])
-)
-teams = teams.drop(columns=list(teams.columns[teams.isna().all()]) + ['gameid'])
-teams.head()  # Shows only the first 5 rows
+teams = lol_2022[lol_2022['position'] == 'team']
+teams = teams[teams['datacompleteness']=='complete']
+teams.head()  # Shows only first 5 rows
 ```
 
 |                               | datacompleteness   |   url | league   |   year | split   | playoffs   | date                |   game |   patch |   participantid | side   | position   | teamname                      | teamid                                  | ban1    | ban2         | ban3         | ban4     | ban5    |   gamelength | result   |   kills |   deaths |   assists |   teamkills |   teamdeaths |   doublekills |   triplekills |   quadrakills |   pentakills |   firstblood |   team kpm |   ckpm |   firstdragon |   dragons |   opp_dragons |   elementaldrakes |   opp_elementaldrakes |   infernals |   mountains |   clouds |   oceans |   chemtechs |   hextechs |   dragons (type unknown) |   elders |   opp_elders |   firstherald |   heralds |   opp_heralds |   firstbaron |   barons |   opp_barons |   firsttower |   towers |   opp_towers |   firstmidtower |   firsttothreetowers |   turretplates |   opp_turretplates |   inhibitors |   opp_inhibitors |   damagetochampions |     dpm |   damagetakenperminute |   damagemitigatedperminute |   wardsplaced |    wpm |   wardskilled |   wcpm |   controlwardsbought |   visionscore |   vspm |   totalgold |   earnedgold |   earned gpm |   goldspent |       gspd |   minionkills |   monsterkills |   monsterkillsownjungle |   monsterkillsenemyjungle |    cspm |   goldat10 |   xpat10 |   csat10 |   opp_goldat10 |   opp_xpat10 |   opp_csat10 |   golddiffat10 |   xpdiffat10 |   csdiffat10 |   killsat10 |   assistsat10 |   deathsat10 |   opp_killsat10 |   opp_assistsat10 |   opp_deathsat10 |   goldat15 |   xpat15 |   csat15 |   opp_goldat15 |   opp_xpat15 |   opp_csat15 |   golddiffat15 |   xpdiffat15 |   csdiffat15 |   killsat15 |   assistsat15 |   deathsat15 |   opp_killsat15 |   opp_assistsat15 |   opp_deathsat15 |
@@ -156,7 +150,7 @@ teams.head()  # Shows only the first 5 rows
 | ('ESPORTSTMNT01_2690219', 23) | complete           |   nan | LCK CL   |   2022 | Spring  | False      | 2022-01-10 08:38:24 |      1 |   12.01 |             200 | Red    | team       | Liiv SANDBOX Challengers      | oe:team:5380cdbc2ad2b8082624f48f99f6672 | LeBlanc | Yuumi        | Twisted Fate | Karma    | Alistar |         2114 | True     |      16 |        3 |        39 |          16 |            3 |             1 |             0 |             0 |            0 |            1 |     0.4541 | 0.5393 |             1 |         4 |             1 |                 4 |                     1 |           0 |           2 |        1 |        0 |           0 |          1 |                      nan |        0 |            0 |             0 |         1 |             1 |            1 |        2 |            0 |            1 |       11 |            3 |               1 |                    1 |              3 |                  2 |            2 |                0 |               74855 | 2124.55 |                2745.72 |                    2868.42 |           129 | 3.6613 |            70 | 1.9868 |                   65 |           346 | 9.8202 |       71004 |        48063 |     1364.13  |       66410 |  0.207137  |          1013 |            244 |                     nan |                       nan | 35.6764 |      16558 |    19048 |      344 |          14939 |        17462 |          317 |           1619 |         1586 |           27 |           3 |             3 |            1 |               1 |                 1 |                3 |      25285 |    29754 |      555 |          23522 |        28848 |          533 |           1763 |          906 |           22 |           3 |             3 |            1 |               1 |                 1 |                3 |
 | ('ESPORTSTMNT01_2690227', 34) | complete           |   nan | LCK CL   |   2022 | Spring  | False      | 2022-01-10 09:51:16 |      1 |   12.01 |             100 | Blue   | team       | KT Rolster Challengers        | oe:team:b9733b8e8aa341319bbaf1035198a28 | Syndra  | Caitlyn      | Karma        | Gragas   | Vex     |         1972 | True     |      14 |        5 |        42 |          14 |            5 |             3 |             1 |             0 |            0 |            0 |     0.426  | 0.5781 |             1 |         4 |             1 |                 4 |                     1 |           0 |           1 |        0 |        1 |           0 |          2 |                      nan |        0 |            0 |             0 |         1 |             1 |            1 |        1 |            0 |            1 |       11 |            2 |               1 |                    1 |              1 |                  4 |            2 |                0 |               67376 | 2049.98 |                2327.89 |                    1776.27 |           119 | 3.6207 |            51 | 1.5517 |                   68 |           264 | 8.0325 |       62868 |        41372 |     1258.78  |       57615 |  0.165672  |           874 |            269 |                     nan |                       nan | 34.7769 |      15466 |    19600 |      368 |          15569 |        18787 |          355 |           -103 |          813 |           13 |           0 |             0 |            1 |               1 |                 1 |                0 |      24795 |    31342 |      560 |          23604 |        29044 |          545 |           1191 |         2298 |           15 |           3 |             8 |            1 |               1 |                 1 |                3 |
 
-#### Univeratiate Analysis
+#### Univariate Analysis
 Since we will be working with the `dragons` and `teamkills` columns of the `teams` DataFrame in our hypothesis test, we will take a look at the distributions of these columns to see if we can make any inferences.
 
 ```python
@@ -200,7 +194,7 @@ Looking at the two distributions, we can infer that the distribution of 20+ team
 We can look at how the average number of dragons compare to the number of team kills by aggregating our data.
 
 ```python
-avg_dragons_by_id = players.pivot_table(index = 'gameid', values = ['dragons', 'teamkills'], aggfunc = 'mean').sort_values(by='dragons', ascending=False)
+avg_dragons_by_id = teams.pivot_table(index = 'gameid', values = ['dragons', 'teamkills'], aggfunc = 'mean').sort_values(by='dragons', ascending=False)
 avg_dragons_by_id.head()  # Shows only the first 5 rows
 ```
 
@@ -286,7 +280,7 @@ def pval(data, col):
     return (diff_of_means(data,col) <= result).mean()
 ```
 
-We will try testing missingness dependency of two columns: `deaths` and `kills`. The following DataFrame will filter our players DataFrame
+We will try testing missingness dependency of two columns: `deaths` and `kills`. The following DataFrame will filter our players DataFrame, and will sum up the ban columns.
 
 ```python
 bans = players[['ban1', 'ban2', 'ban3', 'ban4', 'ban5']]
