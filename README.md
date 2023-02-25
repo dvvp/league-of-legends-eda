@@ -223,3 +223,5 @@ aggregate
 ```
 
 <iframe src="assets/aggregate.html" width=800 height=600 frameBorder=0></iframe>
+
+Observing this overlayed histogram, we can see that teams are most likely to kill 2-3 dragons with a teamkills of 10-15. As these histograms are right skewed, teams are less likely to get higher teamkills than fewer team kills.
