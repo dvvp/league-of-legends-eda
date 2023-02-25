@@ -170,6 +170,8 @@ dragons
 
 <iframe src="assets/dragons.html" width=800 height=600 frameBorder=0></iframe>
 
+The distribution number of dragons killed is right skewed meaning that it is more likely to kill fewer dragons than more dragons.
+
 ```python
 team_kills = px.histogram(teams_copied, 'teamkills',
                          title='Team Kills',
@@ -179,3 +181,12 @@ team_kills
 ```
 
 <iframe src="assets/teamkills.html" width=800 height=600 frameBorder=0></iframe>
+
+The distribution of team kills closely resemble the distribution of dragons kills which suggests that the amount of dragons kills is correlated to a team's team kills. 
+
+One thing to note about the distribution of team kills, however, is that it is bimodal. We assume that this is because there are a certain amount of teams that play more aggressively, leading to many kills, and there are a certain amount of teams that play more passively leading to fewer team kills. There does not seem to be as much of an in-between. The higher peak on the greater amount of team kills suggests that teams tend to play more aggressively than passively.
+
+#### Bivariate Analysis
+
+<iframe src="assets/dragons-vs-teamkills.html" width=800 height=600 frameBorder=0></iframe>
+
