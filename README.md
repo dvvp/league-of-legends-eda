@@ -189,4 +189,3 @@ One thing to note about the distribution of team kills, however, is that it is b
 #### Bivariate Analysis
 
 <iframe src="assets/dragons-vs-teamkills.html" width=800 height=600 frameBorder=0></iframe>
-
