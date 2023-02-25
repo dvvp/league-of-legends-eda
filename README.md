@@ -27,6 +27,8 @@ lol_2022 = pd.read_csv(path, low_memory=False)  # low_memory=False allows pandas
 
 ### Introduction
 
+![Dragon](asserts/dragon.jpg)
+
 Questions to ask:
 
 - Does the amount of dragons killed correlate to more team kills?
